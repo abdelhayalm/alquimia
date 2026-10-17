@@ -1,0 +1,284 @@
+/* Version 4 — a living connection, three unfolding chapters, and a Nile invitation. */
+:root { --header-height: 84px; }
+.story-title-block { min-width: 0; }
+.story-mantra { width: 100%; max-width: 530px; overflow: hidden; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 15px; mask-image: linear-gradient(90deg, transparent, #000 4%, #000 94%, transparent); }
+.mantra-track { display: flex; width: max-content; animation: mantra-flow 35s linear infinite; }
+.mantra-group { display: flex; align-items: center; flex-shrink: 0; gap: 24px; padding-right: 24px; font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--gold-ink); white-space: nowrap; }
+.mantra-group i { font-size: 20px; font-style: normal; }
+.story-mantra:hover .mantra-track, .story-mantra:focus-within .mantra-track { animation-play-state: paused; }
+@keyframes mantra-flow { to { transform: translateX(-50%); } }
+
+/* Four readable circles connected to one steady center. Only decorative light moves. */
+.why-arabic { padding: 88px 0 36px; overflow: clip; }
+.why-heading { margin-bottom: 0; }
+.why-heading > p { max-width: 405px; }
+.learning-orbit { position: relative; height: 680px; margin-top: 12px; isolation: isolate; }
+.orbit-rings, .orbit-connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+.orbit-ring { position: absolute; left: 50%; top: 50%; width: 80%; height: 77%; transform: translate(-50%, -50%); border: 1px solid #c7b58f; border-radius: 50%; opacity: .68; }
+.orbit-ring-inner { width: 74%; height: 71%; border-color: #c7b58f; opacity: .35; }
+.orbit-connections { overflow: visible; fill: none; stroke: #b99d64; stroke-width: 1; opacity: .6; }
+.orbit-traveller { display: none; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #95702e; box-shadow: 0 0 0 5px #bb985827; }
+@supports (offset-path: ellipse(40% 38% at 50% 50%)) {
+  .orbit-traveller { display: block; offset-path: ellipse(40% 38% at 50% 50%); offset-rotate: 0deg; animation: orbit-light 32s linear infinite; }
+}
+@keyframes orbit-light { to { offset-distance: 100%; } }
+.orbit-core { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 258px; aspect-ratio: 1; border-radius: 50%; border: 1px solid #a68a50; background: radial-gradient(circle at 35% 25%, #fffcf4, #eee3cb 80%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 28px; box-shadow: 0 15px 65px #6b512410; }
+.orbit-core::before { content: ""; position: absolute; inset: -13px; border: 1px dashed #bfa677; border-radius: 50%; opacity: .65; animation: orbit-turn 90s linear infinite; }
+@keyframes orbit-turn { to { transform: rotate(360deg); } }
+.orbit-core-glyph { font-family: var(--serif); color: var(--gold-ink); font-size: 28px; line-height: 1.2; margin-bottom: 8px; }
+.orbit-core > p { font-family: var(--serif); font-size: 29px; line-height: 1.12; letter-spacing: -.025em; }
+.orbit-core em { display: inline-block; margin-top: 5px; }
+.orbit-core-note { margin-top: 17px; font-size: 8px; font-weight: 600; letter-spacing: .19em; color: #765728; }
+.orbit-nodes { padding: 0; margin: 0; list-style: none; }
+.orbit-node { position: absolute; transform: translate(-50%, -50%); width: 238px; aspect-ratio: 1; padding: 24px; background: #f7f2e7; border: 1px solid #c9b991; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.orbit-travel { top: 25%; left: 16%; }
+.orbit-friends { top: 25%; left: 84%; }
+.orbit-work { top: 75%; left: 84%; }
+.orbit-culture { top: 75%; left: 16%; }
+.orbit-node-number { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); background: #f7f2e7; color: #8b6931; padding: 0 6px; font-size: 9px; letter-spacing: .1em; }
+.orbit-node .brand-icon { width: 32px; height: 32px; margin-bottom: 10px; }
+.orbit-node h3 { font-size: 25px; line-height: 1.13; }
+.orbit-node > p { font-size: 14px; color: #625b4c; line-height: 1.6; margin-top: 11px; max-width: 184px; }
+.motion-enabled .orbit-awake .orbit-node { animation: orbit-appear .85s cubic-bezier(.2,.65,.3,1) both; }
+.orbit-friends { animation-delay: .12s !important; }
+.orbit-work { animation-delay: .24s !important; }
+.orbit-culture { animation-delay: .36s !important; }
+@keyframes orbit-appear { from { opacity: 0; transform: translate(-50%, -40%) scale(.95); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.orbit-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #cfc4ae; padding-top: 20px; }
+.orbit-footer > p { font-family: var(--serif); font-size: 22px; line-height: 1.5; }
+.motion-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; gap: 5px; padding: 0 11px 0 4px; color: #725322; background: transparent; border: 1px solid #c8b58e; border-radius: 30px; font-size: 12px; white-space: nowrap; }
+.motion-toggle .brand-icon { width: 28px; height: 28px; stroke-width: 2; }
+.motion-toggle:hover { background: #f6f0e3; }
+
+/* The complete story is readable without JS. Tall desktop viewports get a pinned scroll scene. */
+.experience { position: relative; padding: 0; background: var(--cream); }
+.experience-stage { position: relative; isolation: isolate; padding: 85px 0 70px; }
+.experience-canvas { position: absolute; inset: 0; z-index: -1; background: var(--ivory); clip-path: inset(0 var(--stage-inset, 0px) 0 round var(--stage-radius, 0px) var(--stage-radius, 0px) 0 0); }
+.experience-content { width: min(1200px, calc(100% - 100px)); }
+.experience-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 44px; }
+.experience-card { --gold-ink: #765421; position: relative; padding: 42px 30px 30px; border: 1px solid #c6b58e; border-radius: 140px 140px 14px 14px; min-width: 0; min-height: 366px; display: flex; flex-direction: column; justify-content: space-between; background: #ebe1cc; transform-origin: 50% 100%; }
+.experience-card-top { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.experience-card-top .pillar-index { font-size: 10px; letter-spacing: .075em; text-align: center; }
+.experience-card-top .brand-icon { width: 42px; height: 42px; }
+.experience-card h3 { font-size: 30px; line-height: 1.2; margin-top: 25px; }
+.experience-card p { color: #615a4d; font-size: 15px; line-height: 1.85; margin-top: 12px; }
+.experience-card .pillar-note { margin-top: 24px; font-size: 11px; }
+.experience-art { background: #f5f0e5; }
+.experience-community { background: #2d3027; color: #f5f0e5; border-color: #626147; }
+.experience-community .pillar-index, .experience-community .brand-icon, .experience-community .pillar-note { color: #dfc38b; }
+.experience-community p { color: #d3cdbf; }
+.experience-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
+.experience-bottom > p { color: var(--muted); font-size: 13px; }
+.experience-bottom .text-link { font-size: 13px; min-height: 44px; }
+.experience-progress { display: none; width: 120px; height: 1px; background: #d9cbae; flex-shrink: 0; }
+.experience-progress i { display: block; height: 1px; width: 100%; background: #8b682c; transform: scaleX(var(--experience-progress, 1)); transform-origin: left; }
+@media (min-width: 1000px) and (min-height: 740px) {
+  .experience.scroll-scene { height: 230vh; height: 230svh; }
+  .scroll-scene .experience-stage { position: sticky; top: var(--header-height); min-height: calc(100vh - var(--header-height)); min-height: calc(100svh - var(--header-height)); display: flex; align-items: center; overflow: clip; padding-block: 35px; }
+  .scroll-scene .experience-progress { display: block; }
+  .scroll-scene .experience-card { opacity: var(--card-opacity, 1); transform: translate3d(0, var(--card-rise, 0px), 0) rotate(var(--card-tilt, 0deg)); }
+  .scroll-scene .section-heading h2 { font-size: clamp(38px, 3.9vw, 54px); }
+  .scroll-scene .experience-cards { margin-top: 30px; }
+  .scroll-scene .experience-card { min-height: 340px; padding-top: 32px; }
+  .scroll-scene .experience-card-top { gap: 15px; }
+  .scroll-scene .experience-bottom { margin-top: 22px; padding-top: 12px; }
+}
+@media (min-width: 1000px) and (min-height: 740px) and (max-height: 830px) {
+  .scroll-scene .section-heading h2 { font-size: 40px; }
+  .scroll-scene .section-heading > p { font-size: 15px; }
+  .scroll-scene .experience-cards { margin-top: 22px; }
+  .scroll-scene .experience-card { min-height: 320px; padding: 29px 25px 24px; }
+  .scroll-scene .experience-card-top { gap: 12px; }
+  .scroll-scene .experience-card-top .brand-icon { width: 34px; height: 34px; }
+  .scroll-scene .experience-card h3 { font-size: 27px; margin-top: 18px; }
+  .scroll-scene .experience-card p { font-size: 14px; line-height: 1.75; }
+  .scroll-scene .experience-card .pillar-note { margin-top: 18px; }
+}
+
+/* An educator, an approach, and a real weekly invitation. */
+.founder { padding-block: 90px; }
+.founder-grid { align-items: start; }
+.founder-photo { position: sticky; top: calc(var(--header-height) + 30px); }
+.founder-proof { display: flex; align-items: center; gap: 17px; padding: 17px 0; margin: 0 0 23px; border-block: 1px solid #575644; }
+.founder-proof strong { font-family: var(--serif); font-weight: 400; font-size: 39px; line-height: 1; letter-spacing: -.03em; color: var(--gold); }
+.founder-proof > span { font-size: 12px; line-height: 1.65; color: #d0cabb; letter-spacing: .035em; }
+.founder-copy p { font-size: 16px; line-height: 1.85; }
+.founder-invitation { display: flex; align-items: flex-start; gap: 16px; margin-top: 26px; padding-top: 22px; border-top: 1px solid #575644; }
+.founder-invitation .brand-icon { width: 28px; height: 28px; color: #ddc086; margin-top: 3px; }
+.founder-invitation p { font-size: 15px; }
+.founder-invitation strong { display: block; margin-bottom: 7px; color: #eee7d6; font-weight: 500; }
+.founder-copy > .text-link { margin-top: 25px; color: var(--gold); min-height: 44px; }
+
+/* One short annual invitation replaces the repeated membership explanation. */
+.annual-support { max-width: 910px; margin: 28px auto 0; padding: 26px 0 8px; border-top: 1px solid #c6b58e; display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+.annual-support .eyebrow { font-size: 10px; letter-spacing: .12em; }
+.annual-support h3 { font-size: 28px; margin-top: 9px; }
+.annual-support p:not(.eyebrow) { font-size: 14px; margin-top: 10px; color: var(--muted); line-height: 1.7; }
+.annual-support .text-link { white-space: nowrap; color: var(--gold-ink); min-height: 44px; }
+
+/* A softly defocused Nile scene, with a stable high-contrast layer under the copy. */
+.closing { position: relative; isolation: isolate; overflow: hidden; padding-block: 105px; }
+.closing-backdrop, .closing-shade { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+.closing-backdrop { background: #191b1c; }
+.closing-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: blur(2px); transform: scale(1.025); }
+.closing-shade { z-index: -1; background: linear-gradient(90deg, #080b0ba8, #080b0bc4 30%, #080b0bc4 70%, #080b0ba8), linear-gradient(0deg, #080b0b80, transparent 45%, #080b0b66); }
+.closing-content { position: relative; }
+.closing .eyebrow { font-size: 11px; letter-spacing: .2em; }
+.closing h2 { font-size: clamp(44px, 5.1vw, 70px); line-height: 1.12; }
+.closing p:not(.eyebrow) { color: #e5ded0; line-height: 1.8; }
+.closing .button { margin-top: 30px; }
+.closing-caption { display: block; margin-top: 31px; color: #c9c1b1; font-size: 11px; letter-spacing: .055em; }
+
+/* Reversible, once-only reveals. All content is visible before enhancement initializes. */
+.motion-enabled .reveal-ready { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.65,.3,1); }
+.motion-enabled .reveal-ready.is-visible { opacity: 1; transform: none; }
+.experience-card.reveal-ready { transition-duration: .85s; }
+.experience-card.reveal-ready:not(.is-visible) { transform: translateY(65px) rotate(-3deg); }
+.experience-card:nth-child(2).reveal-ready { transition-delay: .1s; }
+.experience-card:nth-child(3).reveal-ready { transition-delay: .2s; }
+.motion-paused .mantra-track, .motion-paused .orbit-core::before, .motion-paused .orbit-traveller { animation-play-state: paused; }
+.motion-paused .reveal-ready { opacity: 1; transform: none; transition: none; }
+.motion-paused .orbit-node { animation: none !important; }
+.motion-paused .experience-card.reveal-ready { opacity: 1; transform: none; transition: none; }
+.motion-toggle:disabled { cursor: default; }
+
+@media (max-width: 1100px) {
+  :root { --header-height: 76px; }
+  .header-inner { height: 76px; }
+  .has-js .menu-toggle { display: block; }
+  .header-inner nav { position: absolute; top: 76px; left: 0; right: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; background: #000; padding: 8px 32px 24px; border-bottom: 1px solid #403524; }
+  .header-inner nav > a { font-size: 16px; padding: 13px 5px; }
+  .header-inner .nav-join { padding: 13px; margin-top: 9px; }
+  body:not(.has-js) .header-inner { height: auto; padding-block: 18px; display: block; }
+  body:not(.has-js) .menu-toggle { display: none; }
+  body:not(.has-js) .header-inner nav { position: static; padding: 12px 0 0; flex-direction: row; flex-wrap: wrap; gap: 12px 20px; border: 0; }
+  body:not(.has-js) .header-inner nav > a { font-size: 14px; }
+  body:not(.has-js) .header-inner .nav-join { margin: 0; }
+  .experience-content { width: calc(100% - 64px); }
+  .experience-cards { gap: 18px; }
+  .experience-card { padding-inline: 25px; }
+  .experience-card h3 { font-size: 27px; }
+  .experience-card-top .pillar-index { font-size: 9px; }
+  .learning-orbit { height: 660px; }
+  .orbit-node { width: 216px; padding: 22px; }
+  .orbit-core { width: 236px; padding: 24px; }
+  .orbit-node h3 { font-size: 23px; }
+  .orbit-node > p { font-size: 13px; }
+}
+@media (max-width: 900px) {
+  .why-heading { grid-template-columns: 1fr; gap: 24px; }
+  .why-heading > p { max-width: 590px; font-size: 16px; }
+  .learning-orbit { height: 680px; }
+  .orbit-node { width: 190px; padding: 20px; }
+  .orbit-travel, .orbit-culture { left: 17%; }
+  .orbit-friends, .orbit-work { left: 83%; }
+  .orbit-core { width: 204px; padding: 22px; }
+  .orbit-core > p { font-size: 25px; }
+  .orbit-core-glyph { font-size: 26px; margin-bottom: 8px; }
+  .orbit-core-note { font-size: 7px; margin-top: 12px; }
+  .orbit-node h3 { font-size: 21px; }
+  .orbit-node > p { font-size: 12px; line-height: 1.55; margin-top: 8px; }
+  .orbit-node .brand-icon { width: 27px; height: 27px; margin-bottom: 7px; }
+  .experience-stage { padding-block: 65px; }
+  .experience .section-heading { grid-template-columns: 1fr; gap: 25px; }
+  .experience .section-heading > p { max-width: 570px; }
+  .experience-cards { gap: 15px; margin-top: 35px; }
+  .experience-card { padding: 32px 20px 24px; min-height: 370px; border-radius: 90px 90px 12px 12px; }
+  .experience-card h3 { font-size: 25px; }
+  .experience-card p { font-size: 14px; line-height: 1.75; }
+  .experience-card .pillar-note { font-size: 10px; letter-spacing: 0; }
+  .experience-card-top .pillar-index { font-size: 8px; letter-spacing: .035em; }
+  .experience-bottom { gap: 15px; }
+  .founder-proof { gap: 12px; }
+}
+@media (max-width: 760px) {
+  .why-arabic { padding-top: 62px; }
+  .learning-orbit { height: 700px; margin-top: 12px; }
+  .orbit-travel, .orbit-culture { left: 25%; }
+  .orbit-friends, .orbit-work { left: 75%; }
+  .orbit-travel, .orbit-friends { top: 18%; }
+  .orbit-work, .orbit-culture { top: 82%; }
+  .orbit-node { width: min(188px, calc(50% - 12px)); }
+  .orbit-core { width: 190px; }
+  .orbit-ring { width: 70%; height: 78%; }
+  .orbit-ring-inner { width: 62%; height: 74%; }
+  .orbit-connections { display: none; }
+  .orbit-core::after { content: ""; position: absolute; left: 50%; top: -74px; width: 1px; height: 74px; background: #b99d64; box-shadow: 0 266px #b99d64; z-index: -1; }
+  .orbit-traveller { offset-path: ellipse(35% 39% at 50% 50%); }
+  .experience-cards { grid-template-columns: 1fr; gap: 24px; }
+  .experience-card { min-height: 0; padding: 33px 30px 28px; border-radius: 75px 75px 16px 16px; }
+  .experience-card-top { flex-direction: row-reverse; justify-content: space-between; gap: 16px; padding-inline: 12px; }
+  .experience-card-top .brand-icon { width: 36px; height: 36px; }
+  .experience-card-top .pillar-index { font-size: 10px; letter-spacing: .07em; text-align: left; }
+  .experience-card h3 { margin-top: 24px; font-size: 30px; }
+  .experience-card p { font-size: 16px; line-height: 1.8; }
+  .experience-card .pillar-note { font-size: 12px; margin-top: 19px; }
+  .experience-bottom { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .annual-support { align-items: flex-start; flex-direction: column; gap: 14px; }
+}
+@media (max-width: 640px) {
+  .header-inner nav { padding-inline: 20px; }
+  .story-mantra { max-width: 100%; margin-top: 18px; }
+  .mantra-group { font-size: 18px; gap: 18px; padding-right: 18px; }
+  .why-arabic { padding-block: 55px 28px; }
+  .learning-orbit { height: 660px; margin-top: 18px; }
+  .orbit-core { width: 174px; padding: 14px; }
+  .orbit-core > p { font-size: 22px; }
+  .orbit-core-glyph { font-size: 22px; margin-bottom: 6px; }
+  .orbit-core-note { letter-spacing: .1em; margin-top: 9px; }
+  .orbit-core::before { inset: -10px; }
+  .orbit-core::after { top: -65px; height: 65px; box-shadow: 0 239px #b99d64; }
+  .orbit-node { width: min(172px, calc(50% - 8px)); padding: 14px 12px; }
+  .orbit-travel, .orbit-friends { top: 18%; }
+  .orbit-work, .orbit-culture { top: 82%; }
+  .orbit-node h3 { font-size: 20px; }
+  .orbit-node > p { font-size: 12px; line-height: 1.5; margin-top: 7px; }
+  .orbit-node-number { font-size: 8px; top: 5px; }
+  .orbit-node .brand-icon { width: 25px; height: 25px; margin-bottom: 6px; }
+  .orbit-footer { flex-wrap: wrap; gap: 16px; padding-top: 18px; }
+  .orbit-footer > p { font-size: 20px; }
+  .orbit-footer > p em { display: block; }
+  .motion-toggle { margin-left: auto; font-size: 11px; }
+  .experience-stage { padding: 58px 0 45px; }
+  .experience-content { width: calc(100% - 40px); }
+  .experience-cards { margin-top: 28px; }
+  .experience-card { padding: 30px 25px 26px; }
+  .experience-card-top { padding-inline: 7px; }
+  .experience-card-top .pillar-index { font-size: 9px; }
+  .experience-bottom { margin-top: 25px; }
+  .founder { padding-block: 58px; }
+  .founder-photo { position: static; }
+  .founder-proof { margin-bottom: 22px; }
+  .founder-proof strong { font-size: 40px; }
+  .founder-proof > span { font-size: 12px; }
+  .founder-copy p { font-size: 16px; line-height: 1.85; }
+  .founder-invitation { gap: 13px; }
+  .founder-invitation p { font-size: 15px; }
+  .founder-invitation .brand-icon { width: 26px; height: 26px; }
+  .annual-support { margin-top: 26px; padding-top: 23px; }
+  .annual-support h3 { font-size: 27px; }
+  .closing { padding-block: 80px; }
+  .closing-backdrop img { object-position: 72% center; }
+  .closing .eyebrow { font-size: 10px; letter-spacing: .13em; }
+  .closing h2 { font-size: clamp(39px, 10vw, 57px); }
+  .closing p:not(.eyebrow) { font-size: 16px; max-width: 320px; margin-inline: auto; }
+  .closing-caption { font-size: 10px; max-width: 270px; margin-inline: auto; }
+}
+@media (max-width: 380px) {
+  .learning-orbit { height: 660px; }
+  .orbit-node { width: calc(50% - 5px); padding: 12px 11px; }
+  .orbit-node h3 { font-size: 18px; }
+  .orbit-node > p { font-size: 12.5px; line-height: 1.45; }
+  .orbit-node .brand-icon { width: 22px; height: 22px; }
+  .orbit-core { width: 164px; }
+  .orbit-core > p { font-size: 21px; }
+  .orbit-footer > p { font-size: 18px; }
+  .experience-content { width: calc(100% - 32px); }
+  .experience-card { padding-inline: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mantra-track, .orbit-core::before, .orbit-traveller, .orbit-node { animation: none !important; }
+  .story-mantra { overflow-x: auto; mask-image: none; }
+  .mantra-group:nth-child(2) { display: none; }
+  .reveal-ready, .reveal-ready.is-visible, .experience-card.reveal-ready { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
