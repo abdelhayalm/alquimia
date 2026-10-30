@@ -62,3 +62,13 @@ Generated with the built-in image-generation tool using the supplied Nile image 
 Final generation prompt:
 
 > Use case: photorealistic-natural. Asset type: a wide atmospheric background photograph for the closing call-to-action of Álquimia, an Egyptian Arabic culture and learning community. Input image 1 is a visual reference for the Nile-at-dusk mood and composition, not a target that needs exact replication. Create a new panoramic scene inspired by it: a quiet Nile waterfront at blue hour with the last amber sunset, a traditional Egyptian felucca with a pale triangular sail on the far right, subtle palms and an old stone terrace with one glowing pierced brass lantern at the left edge, a distant Egyptian riverfront with small warm lights. Restrained antique gold, deep charcoal, muted olive-black and warm sandstone, suited to the original gold-on-black brand. Compose for a full-width website banner, landscape approximately 3:1, with a generous dark uncluttered center for an HTML heading and button. It will sit behind readable cream text. Apply a beautiful gentle optical defocus throughout; recognizable Egyptian silhouettes and reflected light but no sharp busy details. Soft cinematic depth, believable natural lighting, refined and welcoming, not fantasy or a tourism poster. No text, letters, typography, brand marks, borders, watermark, or people.
+
+
+## Method and About pages
+
+- `method.html` explains the learning loop, edutainment approach, example missions, and community practice rhythm.
+- `about.html` presents the mission, vision, values, founder, and a founding concept grounded in the information supplied so far. The origin section can be expanded when Hapi shares his personal founding account.
+- `pages.css` adds shared editorial layouts and responsive styles. `pages.js` progressively enhances the new pages with navigation, example mission tabs, and pausable motion.
+- All three pages link to each other in the header and footer. Membership links from the new pages return to `index.html#membership`, preserving the existing joining flow.
+- The new pages follow the existing English website copy. Prices, membership terms, contact details, and original artwork are unchanged.
+- Deploy the entire repository root, including all HTML, CSS, JavaScript, and assets. No build command is required.
