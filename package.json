@@ -1,0 +1,10 @@
+{
+  "name": "alquimia-community",
+  "version": "4.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node integrations/build.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
