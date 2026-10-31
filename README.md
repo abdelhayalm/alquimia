@@ -1,74 +1,102 @@
-# Álquimia — Website Version 4
+# Álquimia — Website 4.2
 
-This package updates Version 3 while preserving the original gold, black, and warm ivory identity, logo artwork, portrait, temple photo, membership prices, and WhatsApp joining process.
+This release adds a focused membership checkout while preserving the homepage, Method and About pages, original artwork, and ivory, charcoal and gold identity.
 
-## What changed
+## Cloudflare Workers deployment
 
-- **Why learn Egyptian Arabic?** A shorter introduction connects Egyptian Arabic with travel, friendship, work, and the Arab world’s diverse cultures. Four circular themes surround “Learning Egyptian Arabic,” joined by fine gold paths and gentle decorative motion.
-- **The Álquimia experience:** Three curved panels introduce sound and speaking, culture and creativity, and community practice. They rise in order during a pinned scroll scene on tall desktop screens. On phones, tablets, and short windows, they follow the ordinary vertical reading flow and reveal as they enter view. The scene opens from a rounded canvas to the full page width.
-- **More than lessons:** Decode, Immerse, and Transform appear together in a single-line moving subtitle. The separate repeated three-row block is removed.
-- **Meet your educator:** Hapi’s first-person biography includes years of teaching worldwide and online, more than 2,000 students, research into Egyptian culture, authentic materials, structured teaching, edutainment, and weekly learning with Hapi and the Álquimia team. These experience claims come from the founder’s supplied description.
-- **Membership:** A brief annual invitation replaces the long annual explanation, duplicate payment-help block, and repeated three-step joining section. Detailed payment and NAS.com onboarding instructions remain in the form and FAQ.
-- **Closing invitation:** A newly generated, softly defocused Nile scene adds atmosphere behind the existing call to join. The dark overlay keeps the text readable.
-- A Pause motion control and operating-system reduced-motion support are included. No scrolling gesture is intercepted. The mobile shortcut hides while the final CTA is visible.
+The existing Git-connected Worker needs Build command `npm run build`, Deploy command `npx wrangler deploy`, and Root directory `/`. `worker.js` handles `/api/signup`; the ASSETS binding serves the built website. `wrangler.json` uses the name `alquimia`: verify this matches the existing Worker before deploying. No custom domain or route is changed by this configuration.
 
-## Offer and joining process
+After the first Worker deployment, add GOOGLE_SIGNUP_URL and SIGNUP_SHARED_SECRET under **Runtime variables and secrets**, not build variables. Store the shared key as a Secret; it must match the Google Apps Script property. Dashboard variables are preserved on later deployments. The Google receiver has already been deployed; a live signup-to-Sheet check remains pending.
 
-One membership, two payment choices: US$25 for one month or US$250 for twelve months. Annual members pay the equivalent of ten monthly payments, save US$50, and help the school and community plan ahead. Access is the same for both choices.
+## Joining flow
 
-Choose a plan, enter a name, email, and preferred weekly session language, then review and send the prepared WhatsApp message to **+55 61 99959-8410**. Payment is arranged directly with Álquimia. NAS.com access and group/meeting invitations are added manually after payment confirmation. The website does not take card payments, charge automatically, send messages automatically, or store submitted details.
+Choose currency and plan, enter name, email, country and preferred weekly session language, then continue. The website saves the signup privately before opening the matching hosted checkout in the same browser tab. The dialog switches between English and Portuguese with the preferred session language.
 
-English and Portuguese sessions are separate each week. Private classes remain separate and are arranged directly with Álquimia. The previously requested pricing bullet “Arrange payment directly with Hapi” is retained; WhatsApp drafts address the Álquimia team.
+| Currency | Monthly | Annual (12 months) | Provider | Annual saving vs 12 monthly payments |
+| --- | --- | --- | --- | --- |
+| USD | US$25 | US$250 | Stripe | US$50 |
+| BRL | R$135 | R$1,345 | InfinitePay | R$275 |
 
-## Use on Cloudflare Pages
+These are fixed offers, not live currency conversions. The approved links are in `payment-config.js`. When changing an offer, update the payment provider, this configuration and the receiver's price validation. Billing settings remain managed by the owner. The supplied Stripe annual link currently displays a one-time US$250 payment; the site uses the exact link the owner selected.
 
-Upload **Alquimia-Website-V4.zip** as a new deployment in the existing direct-upload Pages project. `index.html` and the assets are at the ZIP root. No build command or dependency installation is required for the uploaded package. Review the resulting deployment before using it as the public version.
+## Activation status
 
-This delivery is a website package. It has not been pushed to GitHub or deployed into the user’s Cloudflare account.
+Source and automated tests are ready. **Signup capture is not live until the Google receiver is deployed and two Cloudflare settings are added.** Without them the API returns a controlled unavailable response. The form keeps its values and offers retry and WhatsApp help. It never pretends a signup was saved or a payment completed.
 
-## Files
+The Google Drive connection in ChatGPT can manage the register, but does not authorize website visitors to write to it. The server integration below provides that separate authorization.
 
-- `index.html` — content and accessible page structure
-- `style.css` — retained visual identity and established layouts
-- `version4.css` — Version 4 responsive layouts and animations
-- `script.js` — navigation, activity tabs, membership form, WhatsApp drafts, motion controls, and scroll sequence
-- `assets/alquimia-horizontal-original.jpg` — original logo, unchanged
-- `assets/alquimia-stacked-original.jpg` — original logo, unchanged
-- `assets/hapi-portrait-original.jpg` — original portrait, unchanged
-- `assets/egypt-temple-enhanced.png` — retained temple image
-- `assets/nile-dusk-cta.png` — new decorative background, 2172 × 724 pixels
+## Private client register
 
-## Verification completed
+Use the private native Google Sheet created for this project. Keep the `Clients` tab and its row 1 headers unchanged. It starts empty.
 
-- JavaScript syntax check.
-- All local images, stylesheets, anchors, IDs, SVG references, form labels, and accessibility references resolve.
-- All image dimension declarations match the files; the four retained image files match Version 3 byte for byte.
-- New solid-background text colors meet a minimum contrast of 4.5:1.
-- Simulated-DOM checks use the production HTML and script: both plans in English and Portuguese, validation, safe message previews, correct WhatsApp number, manual NAS.com wording, annual CTA entry, keyboard activity tabs, navigation resizing, modal dismissal/focus return, and mobile shortcut visibility.
-- Simulated scroll states verify first/second/third reveal order, a fully expanded final canvas, pause/resume, reduced-motion fallback, small/short-screen fallback, and suspension of animation updates when off-screen.
-- Responsive source review covers narrow phone layouts through desktop layouts. The full pinned scene is enabled only at a viewport width of at least 1000 pixels and a height of at least 740 pixels.
+New rows have `Awaiting confirmation` for payment and `Not invited` for NAS.com. Amount is the chosen offer, not evidence of money received. Country is an ISO two-letter code; dates use UTC. Payment reference, access date and notes are operator fields.
 
-**Verification limit:** A live browser preview was not available in this session. Actual rendered desktop/mobile appearance, scrolling on physical devices, and the external WhatsApp handoff still need a visual check after upload. Simulated-DOM checks do not replace browser rendering tests.
+After checking payment in Stripe/InfinitePay, set payment status to `Paid` and add its transaction reference. After sending the NAS.com invitation, set access to `Invited` and enter the date. Duplicate retries never reset those fields.
 
-## Copy reference
+Automatic payment reconciliation/webhooks are not enabled. Use the same email at signup and checkout to match InfinitePay payments. Stripe additionally receives an opaque signup ID as `client_reference_id`; its email is prefilled and remains editable. No card information is stored by this website or the register.
 
-SOAS describes Egyptian Arabic as widely understood across the Arab world because of Egyptian film, music, and television. The page uses “widely understood,” without claiming universal understanding or guaranteed fluency across dialects.
-https://www.soas.ac.uk/study/find-course/arabic-colloquial-egyptian-beginners-course
+## Connect the Google receiver
 
-## CTA artwork
+The Drive connector cannot deploy Apps Script projects. Complete this once in the spreadsheet owner's Google account.
 
-Generated with the built-in image-generation tool using the supplied Nile image as a mood and composition reference. The original reference was not modified. The image is a decorative illustration of a place and mood, not a documentary location photograph.
+1. At `script.google.com`, create a standalone project named **Álquimia signup receiver**. Paste `integrations/google-apps-script/Code.gs` into `Code.gs`.
+2. In project settings, show the manifest and use the supplied `appsscript.json`. Review the code before authorizing its Sheets scope.
+3. Generate a random secret of at least 32 characters in a password manager. In **Project Settings → Script properties**, add:
+   - `SPREADSHEET_ID`: the private register ID from its URL.
+   - `SIGNUP_SHARED_SECRET`: the generated secret.
+4. Select **Deploy → New deployment → Web app**. Execute as the owner, with access **Anyone**, so Cloudflare can reach the receiver. Requests still require a valid HMAC signature. The spreadsheet itself stays private.
+5. Authorize the script and copy the deployed URL ending in `/exec`. Do not use the `/dev` test URL.
+6. In the existing Cloudflare Pages project, add:
+   - `GOOGLE_SIGNUP_URL`: the deployed `/exec` URL.
+   - `SIGNUP_SHARED_SECRET`: the same secret as the script property.
+7. Redeploy so these environment settings take effect.
 
-Final generation prompt:
+Keep the secret on the server. Never put it in public JS, GitHub, spreadsheet cells or chat. Apps Script changes require **Deploy → Manage deployments → Edit → New version**.
 
-> Use case: photorealistic-natural. Asset type: a wide atmospheric background photograph for the closing call-to-action of Álquimia, an Egyptian Arabic culture and learning community. Input image 1 is a visual reference for the Nile-at-dusk mood and composition, not a target that needs exact replication. Create a new panoramic scene inspired by it: a quiet Nile waterfront at blue hour with the last amber sunset, a traditional Egyptian felucca with a pale triangular sail on the far right, subtle palms and an old stone terrace with one glowing pierced brass lantern at the left edge, a distant Egyptian riverfront with small warm lights. Restrained antique gold, deep charcoal, muted olive-black and warm sandstone, suited to the original gold-on-black brand. Compose for a full-width website banner, landscape approximately 3:1, with a generous dark uncluttered center for an HTML heading and button. It will sit behind readable cream text. Apply a beautiful gentle optical defocus throughout; recognizable Egyptian silhouettes and reflected light but no sharp busy details. Soft cinematic depth, believable natural lighting, refined and welcoming, not fantasy or a tourism poster. No text, letters, typography, brand marks, borders, watermark, or people.
+## Build and deploy
 
+No dependency installation is needed. From the repository root:
 
-## Method and About pages
+```sh
+npm test
+npm run build
+```
 
-- `method.html` explains the learning loop, edutainment approach, example missions, and community practice rhythm.
-- `about.html` presents the mission, vision, values, founder, and a founding concept grounded in the information supplied so far. The origin section can be expanded when Hapi shares his personal founding account.
-- `pages.css` adds shared editorial layouts and responsive styles. `pages.js` progressively enhances the new pages with navigation, example mission tabs, and pausable motion.
-- All three pages link to each other in the header and footer. Membership links from the new pages return to `index.html#membership`, preserving the existing joining flow.
-- The new pages follow the existing English website copy. Prices, membership terms, contact details, and original artwork are unchanged.
-- Deploy the entire repository root, including all HTML, CSS, JavaScript, and assets. No build command is required.
+The build produces `public/`: static pages, artwork, a self-contained `_worker.js` signup endpoint, routing and headers. Tests and Google setup source are excluded.
+
+- **Existing Direct Upload project:** upload the contents of `public/` as a folder or ZIP. Cloudflare supports `_worker.js` with dashboard drag and drop. Keep the existing project/domain.
+- **Git-integrated Pages:** build command `npm run build`, output directory `public`, no framework preset.
+- `_routes.json` sends only `/api/*` to the Worker.
+
+Do not upload the unbuilt repository ZIP as the website. Build first.
+
+## Verify activation
+
+1. Open `/api/signup` on the deployed domain. `{"ready":true}` checks configuration presence, not Google authorization or write success.
+2. Submit one clearly marked test signup with an email you control. Verify exactly one row appears in `Clients` and the correct checkout opens. Close checkout without paying when only testing signup capture.
+3. Check both currencies and plans show the expected amounts.
+4. Confirm the receiver works without a visitor Google login, while the register remains private.
+5. Remove the marked test row after review. Only mark Paid after verifying an actual payment.
+
+## Data handling and failure behavior
+
+- Required fields, countries, languages, plan and currency are validated on the server. Amount, provider and destination are derived there.
+- Browser-supplied payment status or arbitrary checkout URLs are never trusted.
+- Requests use same-origin JSON POST, bounded bodies, a hidden honeypot and signed, short-lived server-to-Google payloads.
+- The receiver uses a lock, idempotent signup IDs, and best-effort cache limits of five new requests per client fingerprint and 100 globally per ten-minute bucket. Saved retries do not add records or reset operator fields. Raw IP addresses are not stored.
+- Private records, the register ID and secrets are not returned by the API. There is no public record-reading endpoint.
+- Formula-like names/emails are saved as literal text.
+- The form keeps details in page memory, without localStorage or sessionStorage.
+- No charge, WhatsApp message, email, or NAS.com invitation is sent automatically by the website.
+- Missing setup or failed writes keep visitors on the form with retry and support. Checkout opens only after the receiver acknowledges the save.
+
+## Source
+
+`checkout.js` and `checkout.css` provide the form and currency selection. `payment-config.js` owns offers and routing. `integrations/signup-handler.js` provides the Cloudflare API. `integrations/google-apps-script/` contains the private Google receiver. `integrations/build.mjs` builds the site and Worker. `tests/signup.test.mjs` covers routing, failed saves, signatures, validation, literal text, rate limits and retries.
+
+## References
+
+- https://docs.stripe.com/payment-links/customize
+- https://docs.stripe.com/payment-links/url-parameters
+- https://developers.google.com/apps-script/guides/web
+- https://developers.cloudflare.com/pages/get-started/direct-upload/

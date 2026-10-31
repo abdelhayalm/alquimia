@@ -1,0 +1,5 @@
+{
+  "timeZone": "Etc/UTC",
+  "runtimeVersion": "V8",
+  "oauthScopes": ["https://www.googleapis.com/auth/spreadsheets"]
+}

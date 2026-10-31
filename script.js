@@ -1,13 +1,5 @@
 'use strict';
 
-// Member details stay in the page until the visitor opens a WhatsApp draft.
-// Nothing is stored, submitted to a server, or automatically sent to Álquimia.
-const WHATSAPP_NUMBER = '5561999598410';
-const plans = Object.freeze({
-  monthly: Object.freeze({ message: 'Monthly membership — US$25 for one month' }),
-  annual: Object.freeze({ message: 'Annual membership — US$250 for twelve months' }),
-});
-const isValidPlan = key => Object.prototype.hasOwnProperty.call(plans, key);
 document.body.classList.add('has-js');
 
 const menuToggle = document.querySelector('.menu-toggle');
@@ -71,110 +63,6 @@ if (missionTabs.length) {
 }
 
 const dialog = document.getElementById('join-dialog');
-const form = document.getElementById('join-form');
-const nameField = document.getElementById('member-name');
-const emailField = document.getElementById('member-email');
-const preview = document.getElementById('message-preview-text');
-const planSupport = document.getElementById('plan-support-note');
-let openingLink = null;
-
-function cleanLine(value) {
-  return String(value ?? '').trim().replace(/[\r\n]+/g, ' ');
-}
-function buildMembershipMessage({ membership, name, email, language }) {
-  if (!isValidPlan(membership)) throw new Error('Unknown membership choice');
-  if (!['English', 'Português'].includes(language)) throw new Error('Unknown session language');
-  const isPortuguese = language === 'Português';
-  const lines = isPortuguese ? [
-    'Olá, equipe da Álquimia! Quero fazer parte da comunidade.',
-    '',
-    'Plano: ' + (membership === 'annual' ? 'Anual — US$250 por doze meses' : 'Mensal — US$25 por um mês'),
-    'Nome: ' + cleanLine(name),
-    'Email para o convite na NAS.com e atualizações da comunidade: ' + cleanLine(email),
-    'Sessão semanal preferida: Português',
-    '',
-    'Quero organizar o pagamento diretamente com a equipe da Álquimia. Entendo que a Álquimia adiciona meu acesso à comunidade na NAS.com manualmente após o pagamento ser confirmado.',
-  ] : [
-    'Hello, Álquimia team! I would like to join the community.',
-    '',
-    'Membership: ' + plans[membership].message,
-    'Name: ' + cleanLine(name),
-    'Email for my NAS.com invitation and community updates: ' + cleanLine(email),
-    'Preferred weekly session: English',
-    '',
-    'Please help me arrange payment directly with the Álquimia team. I understand that Álquimia adds my NAS.com community access manually after payment is confirmed.',
-  ];
-  return lines.join('\n');
-}
-function readMemberDetails() {
-  return Object.fromEntries(new FormData(form).entries());
-}
-function updateMessagePreview() {
-  const data = readMemberDetails();
-  if (!isValidPlan(data.membership)) return;
-  const portuguese = data.language === 'Português';
-  if (planSupport) planSupport.hidden = data.membership !== 'annual';
-  data.name = cleanLine(data.name) || (portuguese ? 'Seu nome' : 'Your name');
-  data.email = cleanLine(data.email) || (portuguese ? 'Seu email' : 'Your email');
-  // Use textContent so names, email addresses, and message text are never HTML.
-  preview.textContent = buildMembershipMessage(data);
-  preview.lang = portuguese ? 'pt-BR' : 'en';
-}
-
-document.querySelectorAll('[data-membership]').forEach(link => {
-  link.addEventListener('click', event => {
-    // The genuine WhatsApp href works without JavaScript or native dialog support.
-    if (!dialog || typeof dialog.showModal !== 'function') return;
-    const planKey = link.dataset.membership;
-    if (!isValidPlan(planKey)) return;
-    event.preventDefault();
-    openingLink = link;
-    form.querySelectorAll('input[name="membership"]').forEach(radio => {
-      radio.checked = radio.value === planKey;
-    });
-    updateMessagePreview();
-    if (!dialog.open) dialog.showModal();
-    document.body.classList.add('dialog-open');
-    refreshMobileJoin();
-    nameField.focus();
-  });
-});
-
-function closeDialog() {
-  if (dialog.open) dialog.close();
-}
-dialog.querySelector('.dialog-close').addEventListener('click', closeDialog);
-dialog.addEventListener('close', () => {
-  document.body.classList.remove('dialog-open');
-  refreshMobileJoin();
-  if (openingLink) openingLink.focus();
-});
-dialog.addEventListener('click', event => {
-  if (event.target !== dialog) return;
-  const bounds = dialog.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right ||
-      event.clientY < bounds.top || event.clientY > bounds.bottom) closeDialog();
-});
-nameField.addEventListener('input', () => nameField.setCustomValidity(''));
-emailField.addEventListener('input', () => emailField.setCustomValidity(''));
-form.addEventListener('input', updateMessagePreview);
-form.addEventListener('change', updateMessagePreview);
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  nameField.setCustomValidity('');
-  emailField.setCustomValidity('');
-  nameField.value = nameField.value.trim();
-  emailField.value = emailField.value.trim();
-  if (!nameField.value) nameField.setCustomValidity('Please enter your name.');
-  if (!form.reportValidity()) return;
-  const data = readMemberDetails();
-  if (!isValidPlan(data.membership) || !['English', 'Português'].includes(data.language)) return;
-  const message = buildMembershipMessage(data);
-  // The draft opens in the same tab. The visitor sends it in WhatsApp.
-  // Payment and manual onboarding remain outside the website.
-  window.location.assign('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message));
-});
-updateMessagePreview();
 
 // A mobile shortcut appears between the hero and membership section.
 // It stays hidden when the dialog, pricing section, or footer is visible.
@@ -198,6 +86,7 @@ if ('IntersectionObserver' in window) {
     .forEach(section => joinObserver.observe(section));
   mobileQuery.addEventListener('change', refreshMobileJoin);
 }
+document.addEventListener('membership-dialog-change', refreshMobileJoin);
 document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
 // Version 4 motion is decorative and never takes control of wheel or touch scrolling.
