@@ -68,3 +68,7 @@ body .header-inner .nav-join { color: #211f18; }
 @media (prefers-reduced-motion: reduce) {
   body main :is(.button, .text-link):hover > span[aria-hidden], body .nav-join:hover > span { transform: none; }
 }
+body .membership-payment-bar { flex-direction: column; justify-content: center; text-align: center; gap: 18px; }
+body .payment-bar-copy { justify-content: center; }
+body .currency-picker { margin-inline: auto; justify-content: center; }
+body .currency-picker label { border-radius: 9px; justify-content: center; }
