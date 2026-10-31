@@ -7,7 +7,7 @@ const output = path.join(root,'public');
 await fs.rm(output,{recursive:true,force:true});
 await fs.mkdir(output,{recursive:true});
 for (const name of await fs.readdir(root)) {
-  if (/\.(html|css|js)$/.test(name)) await fs.copyFile(path.join(root,name),path.join(output,name));
+  if (name !== 'worker.js' && /\.(html|css|js)$/.test(name)) await fs.copyFile(path.join(root,name),path.join(output,name));
 }
 await fs.cp(path.join(root,'assets'),path.join(output,'assets'),{recursive:true});
 const config = await fs.readFile(path.join(root,'payment-config.js'),'utf8');
@@ -23,4 +23,5 @@ await fs.writeFile(path.join(output,'_headers'),`/*
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
 `);
+await fs.writeFile(path.join(output,'.assetsignore'),'_worker.js\n_routes.json\n');
 console.log('Built public/ with the website and a self-contained Cloudflare signup worker.');

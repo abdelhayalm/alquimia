@@ -2,6 +2,12 @@
 
 This release adds a focused membership checkout while preserving the homepage, Method and About pages, original artwork, and ivory, charcoal and gold identity.
 
+## Cloudflare Workers deployment
+
+The existing Git-connected Worker needs Build command `npm run build`, Deploy command `npx wrangler deploy`, and Root directory `/`. `worker.js` handles `/api/signup`; the ASSETS binding serves the built website. `wrangler.json` uses the name `alquimia`: verify this matches the existing Worker before deploying. No custom domain or route is changed by this configuration.
+
+After the first Worker deployment, add GOOGLE_SIGNUP_URL and SIGNUP_SHARED_SECRET under **Runtime variables and secrets**, not build variables. Store the shared key as a Secret; it must match the Google Apps Script property. Dashboard variables are preserved on later deployments. The Google receiver has already been deployed; a live signup-to-Sheet check remains pending.
+
 ## Joining flow
 
 Choose currency and plan, enter name, email, country and preferred weekly session language, then continue. The website saves the signup privately before opening the matching hosted checkout in the same browser tab. The dialog switches between English and Portuguese with the preferred session language.
