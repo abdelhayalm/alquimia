@@ -72,3 +72,18 @@ body .membership-payment-bar { flex-direction: column; justify-content: center; 
 body .payment-bar-copy { justify-content: center; }
 body .currency-picker { margin-inline: auto; justify-content: center; }
 body .currency-picker label { border-radius: 9px; justify-content: center; }
+
+/* Refined orbit footer and currency selection. */
+body .orbit-footer { justify-content: center; text-align: center; }
+body .orbit-footer > p { width: 100%; margin-inline: auto; }
+body :is(.orbit-node, .orbit-core) { transition: translate .3s ease, box-shadow .3s ease, border-color .3s ease; }
+@media (hover: hover) and (pointer: fine) {
+  body :is(.orbit-node, .orbit-core):hover { translate: 0 -8px; border-color: #a47c36; box-shadow: 0 14px 30px #7a5b2020; }
+}
+body .currency-picker label:focus-within { outline: none; }
+body .currency-picker label:has(input:checked) { border-color: #8d682c; box-shadow: inset 0 0 0 1px #b18a47; }
+body .currency-picker label:has(input:focus-visible) { outline: 2px solid #a67d36; outline-offset: 0; }
+@media (prefers-reduced-motion: reduce) {
+  body :is(.orbit-node, .orbit-core) { transition: none; }
+  body :is(.orbit-node, .orbit-core):hover { translate: none; }
+}
