@@ -1,0 +1,62 @@
+/* Álquimia 4.3 — shared, centered calls to action. */
+body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link),
+body .nav-join {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 14px;
+  margin-inline: auto;
+  padding: 15px 25px;
+  border: 1px solid #a98443;
+  border-radius: 12px;
+  background: #f8f4eb;
+  color: #363124;
+  font: 600 15px/1.45 var(--sans);
+  letter-spacing: .015em;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: 0 2px 0 #aa85431c;
+  transition: transform .22s ease, background-color .22s ease, color .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+body :is(main, .mobile-join, .checkout-dialog) .button-gold,
+body .nav-join { background: #dfbd78; color: #211f18; border-color: #e6c98e; box-shadow: inset 0 1px 0 #fff4d755, 0 4px 12px #00000012; }
+body main .button-dark, body .checkout-dialog .checkout-submit { background: #28291f; color: #fff3d9; border-color: #aa8543; }
+body :is(.hero, .founder, .founder-section, .editorial-closing, .closing, .chapter-hero, .founder-copy) .text-link { background: #292b23; color: #eed29a; border-color: #b39356; }
+body main :is(.button, .text-link) > span[aria-hidden], body .nav-join > span { flex: 0 0 auto; transition: transform .22s ease; }
+body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 16px; }
+body .experience-bottom { flex-direction: column; justify-content: center; text-align: center; gap: 18px; }
+body .annual-support { flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+body .annual-support .text-link { white-space: normal; }
+body .chapter-home-link { text-align: center; }
+body .price-card .button, body .checkout-dialog .checkout-submit { width: 100%; justify-content: center; }
+body .checkout-submit .checkout-arrow { margin-left: 0; }
+body :is(.mission-tabs, .chapter-tabs) { justify-content: center; gap: 6px; }
+body :is(.mission-tabs, .chapter-tabs) button { border-radius: 9px; text-align: center; }
+body .currency-switch { margin-inline: auto; }
+body main [id] { scroll-margin-top: calc(var(--header-height, 85px) + 24px); }
+body :is(.button, .text-link, .nav-join):focus-visible,
+body :is(.mission-tabs, .chapter-tabs) button:focus-visible { outline: 3px solid #b08535; outline-offset: 5px; }
+@media (hover: hover) and (pointer: fine) {
+  body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover,
+  body .nav-join:hover { transform: translateY(-3px); background: #2d3027; color: #f8dfac; border-color: #c5a365; box-shadow: 0 9px 20px #28271924; }
+  body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) :is(.button, .text-link):hover,
+  body .checkout-dialog .checkout-submit:hover { background: #f0d397 !important; color: #211f18; border-color: #f5dfa9; box-shadow: 0 8px 24px #dfbd7824; }
+  body main :is(.button, .text-link):hover > span[aria-hidden], body .nav-join:hover > span { transform: translate(2px, -1px); }
+}
+body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):active { transform: translateY(0); box-shadow: none; }
+body .checkout-submit:disabled { transform: none; box-shadow: none; }
+@media (max-width: 600px) {
+  body :is(.hero-actions, .chapter-actions) { flex-direction: column; }
+  body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { width: 100%; max-width: 360px; align-self: center; }
+  body :is(main, .checkout-dialog) :is(.button, .text-link) { font-size: 14px; padding: 14px 18px; }
+  body .mobile-join .button { min-height: 46px; padding: 11px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body :is(.button, .text-link, .nav-join), body main :is(.button, .text-link) > span[aria-hidden] { transition: none; }
+  body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover, body .nav-join:hover { transform: none; }
+}
