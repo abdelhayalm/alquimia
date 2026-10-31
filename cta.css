@@ -87,3 +87,10 @@ body .currency-picker label:has(input:focus-visible) { outline: 2px solid #a67d3
   body :is(.orbit-node, .orbit-core) { transition: none; }
   body :is(.orbit-node, .orbit-core):hover { translate: none; }
 }
+
+/* Real cultural imagery for the three learning missions. */
+body .mission-photo { height: auto; width: 100%; aspect-ratio: 3 / 2; margin: 0 0 24px; border-radius: 12px; background: #29291f; }
+body .mission-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+body #mission-sound .mission-photo img { object-position: 50% 20%; }
+body #mission-art .mission-photo img { object-position: 50% 55%; }
+body #mission-conversation .mission-photo img { object-position: center; }
