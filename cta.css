@@ -60,3 +60,11 @@ body .checkout-submit:disabled { transform: none; box-shadow: none; }
   body :is(.button, .text-link, .nav-join), body main :is(.button, .text-link) > span[aria-hidden] { transition: none; }
   body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover, body .nav-join:hover { transform: none; }
 }
+/* Override the header's older gold text rule on its new gold fill. */
+body .header-inner .nav-join { color: #211f18; }
+@media (hover: hover) and (pointer: fine) {
+  body .header-inner .nav-join:hover { color: #f8dfac; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body main :is(.button, .text-link):hover > span[aria-hidden], body .nav-join:hover > span { transform: none; }
+}
