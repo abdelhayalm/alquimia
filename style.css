@@ -1740,8 +1740,6 @@ body.dialog-open {
 .dialog-journey li::before { content: counter(joining) "."; font-weight: 600; }
 .plan-support { padding: 12px 14px; margin: 12px 0 0; background: #ede3ce; border-left: 2px solid #97743a; color: #695127; font-size: 13px; line-height: 1.75; }
 .button { transition: background-color .18s, color .18s, border-color .18s, transform .18s; }
-.button:hover { transform: translateY(-2px); }
-.button:active { transform: translateY(0); }
 .mission-panel:not([hidden]) { animation: mission-enter .2s ease-out; }
 @keyframes mission-enter { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 

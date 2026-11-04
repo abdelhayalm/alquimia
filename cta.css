@@ -34,7 +34,7 @@ body :is(main, .mobile-join, .checkout-dialog) .button-gold,
 body .header-inner .nav-join {
   background: var(--action-gold); color: #242018; border-color: var(--action-gold);
 }
-body main .button-dark,
+body main .button.button-dark,
 body .checkout-dialog form .checkout-submit {
   background: var(--action-ink); color: #fff8e9; border-color: var(--action-ink);
 }
@@ -71,7 +71,7 @@ body .checkout-after summary { min-height: 44px; padding-block: 10px; }
     background: #ece4d4; color: var(--action-ink); border-color: #876327; transform: translateY(-1px); box-shadow: none;
   }
   body :is(main, .mobile-join) .button-gold:hover, body .header-inner .nav-join:hover { background: #edce92; border-color: #edce92; }
-  body main .button-dark:hover, body .checkout-dialog form .checkout-submit:hover { background: #414037 !important; color: #fff8e9; border-color: #414037; }
+  body main .button.button-dark:hover, body .checkout-dialog form .checkout-submit:hover { background: #414037 !important; color: #fff8e9; border-color: #414037; }
   body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .text-link:hover { background: #ffffff0d; color: #fff5dd; border-color: #dfbc74; }
 }
 body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):active,
