@@ -41,6 +41,8 @@ body .checkout-dialog form .checkout-submit {
 body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .text-link {
   color: #f0dfba; border-color: #9e8b65; background: transparent;
 }
+body .about-hero .text-link { color: var(--action-ink); border-color: #a18e68; }
+body .chapter-motion { border-radius: var(--control-radius); min-height: 44px; padding: 10px 16px; }
 body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 12px; }
 body .experience-bottom, body .annual-support, body .membership-payment-bar {
   flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 20px;
@@ -62,6 +64,7 @@ body :is(.mission-tabs, .chapter-tabs) button:focus-visible {
   outline: 3px solid #876327; outline-offset: 3px;
 }
 body :is(.hero, .chapter-hero, .founder-copy, .closing, .editorial-closing) :is(.button, .text-link):focus-visible { outline-color: #f2d69b; }
+body .about-hero .text-link:focus-visible { outline-color: #876327; }
 body .checkout-dialog .dialog-close { min-width: 44px; min-height: 44px; border-radius: var(--control-radius); }
 body .checkout-help { justify-content: center; text-align: center; min-height: 44px; }
 body .checkout-after summary { min-height: 44px; padding-block: 10px; }
@@ -73,6 +76,7 @@ body .checkout-after summary { min-height: 44px; padding-block: 10px; }
   body :is(main, .mobile-join) .button-gold:hover, body .header-inner .nav-join:hover { background: #edce92; border-color: #edce92; }
   body main .button.button-dark:hover, body .checkout-dialog form .checkout-submit:hover { background: #414037 !important; color: #fff8e9; border-color: #414037; }
   body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .text-link:hover { background: #ffffff0d; color: #fff5dd; border-color: #dfbc74; }
+  body .about-hero .text-link:hover { background: #e5dbc7; color: var(--action-ink); border-color: #876327; }
 }
 body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):active,
 body .header-inner .nav-join:active { transform: none; box-shadow: none; }
@@ -84,7 +88,9 @@ body :is(.orbit-node, .orbit-core) { transition: translate .2s ease, border-colo
   body :is(.orbit-node, .orbit-core):hover { translate: 0 -2px; border-color: #a47c36; }
 }
 @media (max-width: 600px) {
-  body :is(.hero-actions, .chapter-actions) { flex-direction: column; }
+  body .about-hero .text-link { color: var(--action-ink); border-color: #a18e68; }
+body .chapter-motion { border-radius: var(--control-radius); min-height: 44px; padding: 10px 16px; }
+body :is(.hero-actions, .chapter-actions) { flex-direction: column; }
   body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { width: 100%; max-width: 360px; align-self: center; }
   body :is(main, .checkout-dialog) :is(.button, .text-link) { font-size: 14px; padding: 12px 18px; }
   body .mobile-join .button { min-height: 44px; padding: 10px 20px; }
