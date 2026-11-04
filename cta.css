@@ -1,90 +1,98 @@
-/* Álquimia 4.3 — shared, centered calls to action. */
+/* Álquimia — shared action system. Flat colour, consistent corners, quiet feedback. */
+:root {
+  --action-radius: 12px;
+  --control-radius: 10px;
+  --action-gold: #dfbc74;
+  --action-ink: #24231e;
+  --action-duration: 180ms;
+}
 body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link),
-body .nav-join {
+body .header-inner .nav-join {
   display: flex;
   width: fit-content;
   max-width: 100%;
-  min-height: 54px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   align-self: center;
-  gap: 14px;
+  gap: 10px;
   margin-inline: auto;
-  padding: 15px 25px;
-  border: 1px solid #a98443;
-  border-radius: 12px;
-  background: #f8f4eb;
-  color: #363124;
-  font: 600 15px/1.45 var(--sans);
-  letter-spacing: .015em;
+  padding: 12px 24px;
+  border: 1px solid #b8ad96;
+  border-radius: var(--action-radius);
+  background: transparent;
+  color: var(--action-ink);
+  font: 600 15px/1.5 var(--sans);
+  letter-spacing: 0;
   text-align: center;
   text-decoration: none;
   white-space: normal;
-  box-shadow: 0 2px 0 #aa85431c;
-  transition: transform .22s ease, background-color .22s ease, color .22s ease, box-shadow .22s ease, border-color .22s ease;
+  box-shadow: none;
+  transition: background-color var(--action-duration) ease, color var(--action-duration) ease, border-color var(--action-duration) ease, transform var(--action-duration) ease;
 }
 body :is(main, .mobile-join, .checkout-dialog) .button-gold,
-body .nav-join { background: #dfbd78; color: #211f18; border-color: #e6c98e; box-shadow: inset 0 1px 0 #fff4d755, 0 4px 12px #00000012; }
-body main .button-dark, body .checkout-dialog .checkout-submit { background: #28291f; color: #fff3d9; border-color: #aa8543; }
-body :is(.hero, .founder, .founder-section, .editorial-closing, .closing, .chapter-hero, .founder-copy) .text-link { background: #292b23; color: #eed29a; border-color: #b39356; }
-body main :is(.button, .text-link) > span[aria-hidden], body .nav-join > span { flex: 0 0 auto; transition: transform .22s ease; }
-body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 16px; }
-body .experience-bottom { flex-direction: column; justify-content: center; text-align: center; gap: 18px; }
-body .annual-support { flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+body .header-inner .nav-join {
+  background: var(--action-gold); color: #242018; border-color: var(--action-gold);
+}
+body main .button-dark,
+body .checkout-dialog form .checkout-submit {
+  background: var(--action-ink); color: #fff8e9; border-color: var(--action-ink);
+}
+body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .text-link {
+  color: #f0dfba; border-color: #9e8b65; background: transparent;
+}
+body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 12px; }
+body .experience-bottom, body .annual-support, body .membership-payment-bar {
+  flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 20px;
+}
 body .annual-support .text-link { white-space: normal; }
 body .chapter-home-link { text-align: center; }
-body .price-card .button, body .checkout-dialog .checkout-submit { width: 100%; justify-content: center; }
-body .checkout-submit .checkout-arrow { margin-left: 0; }
+body .price-card .button, body .checkout-dialog form .checkout-submit { width: 100%; justify-content: center; }
 body :is(.mission-tabs, .chapter-tabs) { justify-content: center; gap: 6px; }
-body :is(.mission-tabs, .chapter-tabs) button { border-radius: 9px; text-align: center; }
-body .currency-switch { margin-inline: auto; }
+body :is(.mission-tabs, .chapter-tabs) button { border-radius: var(--control-radius); text-align: center; min-height: 44px; }
+body .currency-switch, body .currency-picker { margin-inline: auto; justify-content: center; }
+body .currency-picker label { border-radius: var(--control-radius); justify-content: center; box-shadow: none; }
+body .currency-picker label:has(input:checked) { border-color: var(--action-ink); box-shadow: none; }
+body .currency-picker label:focus-within { outline: none; }
+body .currency-picker label:has(input:focus-visible) { outline: 2px solid #876327; outline-offset: 0; }
+body .payment-bar-copy { justify-content: center; }
 body main [id] { scroll-margin-top: calc(var(--header-height, 85px) + 24px); }
 body :is(.button, .text-link, .nav-join):focus-visible,
-body :is(.mission-tabs, .chapter-tabs) button:focus-visible { outline: 3px solid #b08535; outline-offset: 5px; }
+body :is(.mission-tabs, .chapter-tabs) button:focus-visible {
+  outline: 3px solid #876327; outline-offset: 3px;
+}
+body :is(.hero, .chapter-hero, .founder-copy, .closing, .editorial-closing) :is(.button, .text-link):focus-visible { outline-color: #f2d69b; }
+body .checkout-dialog .dialog-close { min-width: 44px; min-height: 44px; border-radius: var(--control-radius); }
+body .checkout-help { justify-content: center; text-align: center; min-height: 44px; }
+body .checkout-after summary { min-height: 44px; padding-block: 10px; }
 @media (hover: hover) and (pointer: fine) {
   body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover,
-  body .nav-join:hover { transform: translateY(-3px); background: #2d3027; color: #f8dfac; border-color: #c5a365; box-shadow: 0 9px 20px #28271924; }
-  body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) :is(.button, .text-link):hover,
-  body .checkout-dialog .checkout-submit:hover { background: #f0d397 !important; color: #211f18; border-color: #f5dfa9; box-shadow: 0 8px 24px #dfbd7824; }
-  body main :is(.button, .text-link):hover > span[aria-hidden], body .nav-join:hover > span { transform: translate(2px, -1px); }
+  body .header-inner .nav-join:hover {
+    background: #ece4d4; color: var(--action-ink); border-color: #876327; transform: translateY(-1px); box-shadow: none;
+  }
+  body :is(main, .mobile-join) .button-gold:hover, body .header-inner .nav-join:hover { background: #edce92; border-color: #edce92; }
+  body main .button-dark:hover, body .checkout-dialog form .checkout-submit:hover { background: #414037 !important; color: #fff8e9; border-color: #414037; }
+  body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .text-link:hover { background: #ffffff0d; color: #fff5dd; border-color: #dfbc74; }
 }
-body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):active { transform: translateY(0); box-shadow: none; }
-body .checkout-submit:disabled { transform: none; box-shadow: none; }
+body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):active,
+body .header-inner .nav-join:active { transform: none; box-shadow: none; }
+body .checkout-dialog form .checkout-submit:disabled { cursor: wait; opacity: .65; transform: none; box-shadow: none; }
+body .orbit-footer { justify-content: center; text-align: center; }
+body .orbit-footer > p { width: 100%; margin-inline: auto; }
+body :is(.orbit-node, .orbit-core) { transition: translate .2s ease, border-color .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  body :is(.orbit-node, .orbit-core):hover { translate: 0 -2px; border-color: #a47c36; }
+}
 @media (max-width: 600px) {
   body :is(.hero-actions, .chapter-actions) { flex-direction: column; }
   body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { width: 100%; max-width: 360px; align-self: center; }
-  body :is(main, .checkout-dialog) :is(.button, .text-link) { font-size: 14px; padding: 14px 18px; }
-  body .mobile-join .button { min-height: 46px; padding: 11px 20px; }
+  body :is(main, .checkout-dialog) :is(.button, .text-link) { font-size: 14px; padding: 12px 18px; }
+  body .mobile-join .button { min-height: 44px; padding: 10px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  body :is(.button, .text-link, .nav-join), body main :is(.button, .text-link) > span[aria-hidden] { transition: none; }
-  body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover, body .nav-join:hover { transform: none; }
-}
-/* Override the header's older gold text rule on its new gold fill. */
-body .header-inner .nav-join { color: #211f18; }
-@media (hover: hover) and (pointer: fine) {
-  body .header-inner .nav-join:hover { color: #f8dfac; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body main :is(.button, .text-link):hover > span[aria-hidden], body .nav-join:hover > span { transform: none; }
-}
-body .membership-payment-bar { flex-direction: column; justify-content: center; text-align: center; gap: 18px; }
-body .payment-bar-copy { justify-content: center; }
-body .currency-picker { margin-inline: auto; justify-content: center; }
-body .currency-picker label { border-radius: 9px; justify-content: center; }
-
-/* Refined orbit footer and currency selection. */
-body .orbit-footer { justify-content: center; text-align: center; }
-body .orbit-footer > p { width: 100%; margin-inline: auto; }
-body :is(.orbit-node, .orbit-core) { transition: translate .3s ease, box-shadow .3s ease, border-color .3s ease; }
-@media (hover: hover) and (pointer: fine) {
-  body :is(.orbit-node, .orbit-core):hover { translate: 0 -8px; border-color: #a47c36; box-shadow: 0 14px 30px #7a5b2020; }
-}
-body .currency-picker label:focus-within { outline: none; }
-body .currency-picker label:has(input:checked) { border-color: #8d682c; box-shadow: inset 0 0 0 1px #b18a47; }
-body .currency-picker label:has(input:focus-visible) { outline: 2px solid #a67d36; outline-offset: 0; }
-@media (prefers-reduced-motion: reduce) {
-  body :is(.orbit-node, .orbit-core) { transition: none; }
+  body :is(.button, .text-link, .nav-join, .orbit-node, .orbit-core) { transition: none; }
+  body :is(main, .mobile-join, .checkout-dialog) :is(.button, .text-link):hover,
+  body .header-inner .nav-join:hover { transform: none; }
   body :is(.orbit-node, .orbit-core):hover { translate: none; }
 }
 

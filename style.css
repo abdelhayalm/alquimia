@@ -160,9 +160,6 @@ em {
   padding:10px 17px;
   color:var(--gold)
 }
-.nav-join span {
-  margin-left:12px
-}
 .menu-toggle {
   display:none;
   background:none;
@@ -1745,8 +1742,6 @@ body.dialog-open {
 .button { transition: background-color .18s, color .18s, border-color .18s, transform .18s; }
 .button:hover { transform: translateY(-2px); }
 .button:active { transform: translateY(0); }
-.text-link > span[aria-hidden] { transition: transform .18s; }
-.text-link:hover > span[aria-hidden] { transform: translateX(3px); }
 .mission-panel:not([hidden]) { animation: mission-enter .2s ease-out; }
 @keyframes mission-enter { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -1800,9 +1795,7 @@ body.dialog-open {
   .join-dialog form .button { font-size: 14px; gap: 10px; padding-inline: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .button, .text-link > span[aria-hidden] { transition: none; }
-  .button:hover, .text-link:hover > span[aria-hidden] { transform: none; }
-  .mission-panel:not([hidden]) { animation: none; }
+  .button,   .button:hover,   .mission-panel:not([hidden]) { animation: none; }
 }
 
 /* Version 3 — four personal reasons, followed by a clear path into the experience. */
@@ -1825,8 +1818,7 @@ body.dialog-open {
 @media (min-width: 901px) and (max-width: 1100px) {
   .header-inner nav { gap: 17px; font-size: 14px; }
   .header-inner .nav-join { padding-inline: 12px; }
-  .nav-join span { margin-left: 8px; }
-}
+  }
 @media (max-width: 1100px) {
   .why-point { gap: 20px; }
   .why-point:nth-child(odd) { padding-right: 30px; }
