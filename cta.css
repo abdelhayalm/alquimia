@@ -42,7 +42,6 @@ body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .tex
   color: #f0dfba; border-color: #9e8b65; background: transparent;
 }
 body .about-hero .text-link { color: var(--action-ink); border-color: #a18e68; }
-body .chapter-motion { border-radius: var(--control-radius); min-height: 44px; padding: 10px 16px; }
 body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { margin-inline: 0; }
 body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 12px; }
 body .experience-bottom, body .annual-support, body .membership-payment-bar {
@@ -90,7 +89,6 @@ body :is(.orbit-node, .orbit-core) { transition: translate .2s ease, border-colo
 }
 @media (max-width: 600px) {
   body .about-hero .text-link { color: var(--action-ink); border-color: #a18e68; }
-body .chapter-motion { border-radius: var(--control-radius); min-height: 44px; padding: 10px 16px; }
 body :is(.hero-actions, .chapter-actions) { flex-direction: column; }
   body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { width: 100%; max-width: 360px; align-self: center; }
   body :is(main, .checkout-dialog) :is(.button, .text-link) { font-size: 14px; padding: 12px 18px; }

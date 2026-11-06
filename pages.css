@@ -21,9 +21,6 @@
 .chapter-hero-foot { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 20px; padding-block: 28px; margin-top: 75px; border-top: 1px solid #39382e; color: #c5b999; font-size: 12px; letter-spacing: .13em; }
 .chapter-hero-foot a { letter-spacing: .03em; padding-block: 8px; }
 .chapter-hero-foot a:hover { color: #fff3d9; }
-.chapter-motion { min-height: 44px; padding: 8px 14px; border: 1px solid #5e543d; border-radius: 2px; background: transparent; color: #e8d6ad; font-size: 12px; letter-spacing: .03em; }
-.chapter-motion:hover { background: #242319; }
-.chapter-motion:disabled { cursor: default; }
 .method-seal { width: 100%; max-width: 480px; aspect-ratio: 1; position: relative; justify-self: center; display: grid; place-items: center; isolation: isolate; }
 .seal-orbit { position: absolute; inset: 8%; border: 1px solid #74613d; border-radius: 50%; }
 .seal-orbit::before, .seal-orbit::after { content: ""; position: absolute; border: 1px solid #483e2a; border-radius: 50%; inset: 15%; }
@@ -147,7 +144,6 @@
 .purpose-to-practice em, .purpose-to-practice .eyebrow { color: var(--gold); }
 .purpose-to-practice .chapter-copy { color: #c1c1b3; }
 .purpose-to-practice .button { color: #211e18; }
-.chapter-motion-off .seal-orbit > span { animation: none; }
 @media (min-width: 1101px) {
   .header-inner nav { gap: 24px; font-size: 14px; }
 }
@@ -208,8 +204,7 @@
   .chapter-hero-foot { gap: 8px 20px; margin-top: 24px; font-size: 10px; padding-block: 20px; }
   .chapter-hero-foot > span { width: 100%; }
   .chapter-hero-foot a { font-size: 11px; }
-  .chapter-motion { margin-left: auto; font-size: 11px; }
-  .chapter-section-heading { margin-bottom: 36px; }
+    .chapter-section-heading { margin-bottom: 36px; }
   .chapter-section-heading > p:last-child { font-size: 15px; }
   .chapter-copy { font-size: 16px; line-height: 1.85; }
   .learning-steps { grid-template-columns: 1fr; gap: 0; border-left: 1px solid #c9b98f; padding-left: 24px; margin-left: 7px; }
@@ -268,8 +263,7 @@
 }
 @media (max-width: 360px) {
   .chapter-hero-foot { column-gap: 8px; }
-  .chapter-motion { padding-inline: 9px; }
-  .seal-center > span[lang="ar"] { font-size: 50px; }
+    .seal-center > span[lang="ar"] { font-size: 50px; }
   .seal-center p { font-size: 21px; }
   .seal-foot { font-size: 7px; }
   .chapter-tabs button { font-size: 11px; padding-inline: 4px; }

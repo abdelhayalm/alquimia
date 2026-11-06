@@ -3,7 +3,7 @@
 .story-title-block { min-width: 0; }
 .story-mantra { max-width: 38ch; margin-top: 24px; font: 20px/1.6 var(--serif); color: var(--gold-ink); }
 
-/* Four readable circles connected to one steady center. Only decorative light moves. */
+/* Four readable circles connected to one steady center. */
 .why-arabic { padding: 88px 0 36px; overflow: clip; }
 .why-heading { margin-bottom: 0; }
 .why-heading > p { max-width: 405px; }
@@ -34,9 +34,6 @@
 
 .orbit-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #cfc4ae; padding-top: 20px; }
 .orbit-footer > p { font-family: var(--serif); font-size: 22px; line-height: 1.5; }
-.motion-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; gap: 5px; padding: 0 11px 0 4px; color: #725322; background: transparent; border: 1px solid #c8b58e; border-radius: 30px; font-size: 12px; white-space: nowrap; }
-.motion-toggle .brand-icon { width: 28px; height: 28px; stroke-width: 2; }
-.motion-toggle:hover { background: #f6f0e3; }
 
 /* A continuous reading flow on desktop and mobile, without scroll pinning. */
 .experience { position: relative; padding: 0; background: var(--cream); }
@@ -58,8 +55,6 @@
 .experience-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
 .experience-bottom > p { color: var(--muted); font-size: 13px; }
 .experience-bottom .text-link { font-size: 13px; min-height: 44px; }
-.experience-progress { display: none; width: 120px; height: 1px; background: #d9cbae; flex-shrink: 0; }
-.experience-progress i { display: block; height: 1px; width: 100%; background: #8b682c; transform: scaleX(var(--experience-progress, 1)); transform-origin: left; }
 /* An educator, an approach, and a real weekly invitation. */
 .founder { padding-block: 90px; }
 .founder-grid { align-items: start; }
@@ -189,8 +184,7 @@
   .orbit-footer { flex-wrap: wrap; gap: 16px; padding-top: 18px; }
   .orbit-footer > p { font-size: 20px; }
   .orbit-footer > p em { display: block; }
-  .motion-toggle { margin-left: auto; font-size: 11px; }
-  .experience-stage { padding: 58px 0 45px; }
+    .experience-stage { padding: 58px 0 45px; }
   .experience-content { width: calc(100% - 40px); }
   .experience-cards { margin-top: 28px; }
   .experience-card { padding: 30px 25px 26px; }
@@ -258,4 +252,10 @@
   .experience-card h3 { margin-top: 24px; }
   .experience-card .pillar-note { font-size: 12px; }
   .founder-proof { justify-content: center; }
+}
+@media (max-width: 380px) {
+  .orbit-node { padding: 12px 10px; }
+  .orbit-node h3 { font-size: 18px; }
+  .orbit-node > p { font-size: 12px; line-height: 1.45; margin-top: 6px; }
+  .orbit-node .brand-icon { width: 24px; height: 24px; margin-bottom: 6px; }
 }
