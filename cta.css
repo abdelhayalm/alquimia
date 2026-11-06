@@ -43,6 +43,7 @@ body :is(.hero, .founder-copy, .chapter-hero, .editorial-closing, .closing) .tex
 }
 body .about-hero .text-link { color: var(--action-ink); border-color: #a18e68; }
 body .chapter-motion { border-radius: var(--control-radius); min-height: 44px; padding: 10px 16px; }
+body :is(.hero-actions, .chapter-actions) > :is(.button, .text-link) { margin-inline: 0; }
 body :is(.hero-actions, .chapter-actions) { justify-content: center; align-items: center; gap: 12px; }
 body .experience-bottom, body .annual-support, body .membership-payment-bar {
   flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 20px;

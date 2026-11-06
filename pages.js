@@ -67,40 +67,23 @@ const yearLabel = document.getElementById('copyright-year');
 if (yearLabel) yearLabel.textContent = new Date().getFullYear();
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const motionControl = document.querySelector('.chapter-motion');
-let motionPaused = reducedMotion.matches;
-function setChapterMotion() {
-  const enabled = !motionPaused && !reducedMotion.matches;
-  document.body.classList.toggle('chapter-motion-on', enabled);
-  document.body.classList.toggle('chapter-motion-off', !enabled);
-  if (motionControl) {
-    motionControl.hidden = false;
-    motionControl.disabled = reducedMotion.matches;
-    motionControl.setAttribute('aria-pressed', String(!enabled));
-    motionControl.textContent = reducedMotion.matches ? 'Reduced motion' : enabled ? 'Pause motion' : 'Resume motion';
-  }
-}
-// Copy is visible until the observer is available; no animation dependency.
+const chapterAnimations = new Set();
 if ('IntersectionObserver' in window) {
   const reveal = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('chapter-visible');
-        reveal.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      reveal.unobserve(entry.target);
+      if (reducedMotion.matches || !entry.target.animate) return;
+      const animation = entry.target.animate(
+        [{ opacity: .72, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 260, easing: 'cubic-bezier(.22, 1, .36, 1)' }
+      );
+      chapterAnimations.add(animation);
+      animation.finished.then(() => chapterAnimations.delete(animation)).catch(() => {});
     });
-  }, {threshold: 0.08, rootMargin: '0px 0px -16px 0px'});
+  }, { threshold: .1 });
   document.querySelectorAll('[data-reveal]').forEach(element => reveal.observe(element));
-  document.body.classList.add('chapters-enhanced');
-} else {
-  document.querySelectorAll('[data-reveal]').forEach(element => element.classList.add('chapter-visible'));
 }
-motionControl?.addEventListener('click', () => {
-  motionPaused = !motionPaused;
-  setChapterMotion();
+reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) chapterAnimations.forEach(animation => animation.cancel());
 });
-reducedMotion.addEventListener('change', e => {
-  motionPaused = e.matches;
-  setChapterMotion();
-});
-setChapterMotion();

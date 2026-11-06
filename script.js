@@ -72,6 +72,7 @@ const visibleSections = new Set(['home']);
 function refreshMobileJoin() {
   if (!mobileJoin) return;
   mobileJoin.hidden = !mobileQuery.matches || dialog.open || visibleSections.size > 0;
+  document.body.classList.toggle('has-mobile-join', !mobileJoin.hidden);
 }
 if ('IntersectionObserver' in window) {
   const joinObserver = new IntersectionObserver(entries => {
@@ -89,117 +90,26 @@ if ('IntersectionObserver' in window) {
 document.addEventListener('membership-dialog-change', refreshMobileJoin);
 document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-// Version 4 motion is decorative and never takes control of wheel or touch scrolling.
-// Reduced motion and the visible pause button leave every chapter readable.
-(() => {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const sceneQuery = window.matchMedia('(min-width: 1000px) and (min-height: 740px)');
-  const experience = document.getElementById('experience');
-  const stage = experience?.querySelector('.experience-stage');
-  const cards = [...document.querySelectorAll('.experience-card')];
-  const orbit = document.querySelector('.learning-orbit');
-  const motionButton = document.querySelector('.motion-toggle');
-  let paused = reducedMotion.matches;
-  let pinned = false;
-  let sceneNear = true;
-  let frame = 0;
-  let revealObserver;
-  const clamp = value => Math.min(1, Math.max(0, value));
-  const ease = value => 1 - Math.pow(1 - value, 3);
-
-  function renderScene() {
-    frame = 0;
-    if (!pinned || !sceneNear || !stage) return;
-    const bounds = experience.getBoundingClientRect();
-    const header = document.querySelector('.site-header');
-    const headerHeight = header ? header.getBoundingClientRect().height : 84;
-    const distance = Math.max(1, experience.offsetHeight - stage.offsetHeight);
-    const progress = clamp((headerHeight - bounds.top) / distance);
-    const opening = ease(clamp(progress / .72));
-    experience.style.setProperty('--experience-progress', progress.toFixed(4));
-    experience.style.setProperty('--stage-inset', (54 * (1 - opening)).toFixed(2) + 'px');
-    experience.style.setProperty('--stage-radius', (130 * (1 - opening)).toFixed(2) + 'px');
-    cards.forEach((card, index) => {
-      const step = ease(clamp((progress - index * .22) / .26));
-      card.style.setProperty('--card-opacity', String(clamp(step * 1.4)));
-      card.style.setProperty('--card-rise', (130 * (1 - step)).toFixed(2) + 'px');
-      card.style.setProperty('--card-tilt', ((index === 1 ? 7 : -7) * (1 - step)).toFixed(2) + 'deg');
+// Short, once-only entrances. Content never depends on a CSS hidden state.
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const revealAnimations = new Set();
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      revealObserver.unobserve(entry.target);
+      if (reducedMotion.matches || !entry.target.animate) return;
+      const animation = entry.target.animate(
+        [{ opacity: .72, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 260, easing: 'cubic-bezier(.22, 1, .36, 1)' }
+      );
+      revealAnimations.add(animation);
+      animation.finished.then(() => revealAnimations.delete(animation)).catch(() => {});
     });
-  }
-  function requestScene() {
-    if (!pinned || !sceneNear || frame) return;
-    frame = window.requestAnimationFrame(renderScene);
-  }
-  function configureMotion() {
-    document.body.classList.toggle('motion-paused', paused);
-    document.body.classList.toggle('motion-enabled', !paused);
-    if (motionButton) {
-      motionButton.hidden = false;
-      motionButton.disabled = reducedMotion.matches;
-      motionButton.setAttribute('aria-pressed', String(paused));
-      motionButton.querySelector('span').textContent = reducedMotion.matches ? 'Reduced motion' : paused ? 'Resume motion' : 'Pause motion';
-      motionButton.querySelector('use').setAttribute('href', paused ? '#icon-play' : '#icon-pause');
-    }
-    pinned = Boolean(experience && stage && sceneQuery.matches && !paused);
-    experience?.classList.toggle('scroll-scene', pinned);
-    cards.forEach(card => {
-      // Cards are revealed in reading order on smaller screens and short desktop windows.
-      if (pinned || paused || !revealObserver) {
-        revealObserver?.unobserve(card);
-        card.classList.remove('reveal-ready');
-        card.classList.add('is-visible');
-      } else {
-        card.classList.add('reveal-ready');
-        revealObserver.observe(card);
-      }
-    });
-    if (paused && orbit) orbit.classList.add('orbit-awake');
-    if (frame) window.cancelAnimationFrame(frame);
-    frame = 0;
-    if (pinned) renderScene();
-  }
-
-  if ('IntersectionObserver' in window) {
-    revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      });
-    }, { threshold: .12, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.why-heading, .egypt-copy, .benefits-grid article, .founder-proof, .annual-support, .closing-content')
-      .forEach(element => {
-        element.classList.add('reveal-ready');
-        revealObserver.observe(element);
-      });
-    if (orbit) {
-      const orbitObserver = new IntersectionObserver(entries => {
-        if (entries.some(entry => entry.isIntersecting)) {
-          orbit.classList.add('orbit-awake');
-          orbitObserver.disconnect();
-        }
-      }, { threshold: .15 });
-      orbitObserver.observe(orbit);
-    }
-    if (experience) {
-      const sceneObserver = new IntersectionObserver(entries => {
-        sceneNear = entries.some(entry => entry.isIntersecting);
-        if (sceneNear) requestScene();
-      }, { rootMargin: '150px' });
-      sceneObserver.observe(experience);
-    }
-  }
-  motionButton?.addEventListener('click', () => {
-    paused = !paused;
-    configureMotion();
-  });
-  reducedMotion.addEventListener('change', event => {
-    paused = event.matches;
-    configureMotion();
-  });
-  sceneQuery.addEventListener('change', configureMotion);
-  window.addEventListener('scroll', requestScene, { passive: true });
-  window.addEventListener('resize', requestScene, { passive: true });
-  window.addEventListener('load', requestScene, { once: true });
-  configureMotion();
-})();
+  }, { threshold: .1 });
+  document.querySelectorAll('.why-heading, .experience-cards, .egypt-copy, .founder-introduction, .center-heading')
+    .forEach(element => revealObserver.observe(element));
+}
+reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) revealAnimations.forEach(animation => animation.cancel());
+});

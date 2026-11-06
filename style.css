@@ -1,5 +1,8 @@
 /* Álquimia — original artwork, restrained gold, black and warm ivory. */
 :root {
+  --panel-radius:16px;
+  --control-radius:10px;
+  --space-section:clamp(64px,7vw,104px);
   --ink:#24231e;
   --muted:#68665e;
   --ivory:#f6f3eb;
@@ -638,6 +641,8 @@ em {
 .price-card {
   position:relative;
   border:1px solid #c7bda9;
+  border-radius:var(--panel-radius);
+  background:#fdfaf3;
   padding:35px 34px 32px
 }
 .plan-label {
@@ -1517,9 +1522,9 @@ body.dialog-open {
 .challenge-grid { grid-template-columns: 0.95fr 1.05fr; gap: 80px; align-items: start; }
 .challenge-grid > div:first-child > p:not(.eyebrow) { font-size: 17px; line-height: 1.8; }
 .challenge-grid > div:first-child > .challenge-frequency { font-size: 15px; color: var(--gold-ink); border-left: 2px solid #b79659; padding-left: 18px; }
-.mission-demo { border: 1px solid var(--line); padding: 28px; background: #fdfaf3; min-width: 0; }
+.mission-demo { border: 1px solid var(--line); border-radius: var(--panel-radius); padding: 28px; background: #fdfaf3; min-width: 0; }
 .demo-label { font-size: 12px; color: var(--gold-ink); letter-spacing: .1em; }
-.mission-tabs { display: grid; grid-template-columns: .8fr .6fr 1.35fr; gap: 4px; margin-top: 16px; padding: 4px; background: #eee7d9; }
+.mission-tabs { border-radius: 12px; display: grid; grid-template-columns: .8fr .6fr 1.35fr; gap: 4px; margin-top: 16px; padding: 4px; background: #eee7d9; }
 .mission-tabs button { border: 0; background: transparent; color: #5b574b; padding: 10px 8px; min-height: 44px; font-size: 14px; }
 .mission-tabs button[aria-selected="true"] { background: #25261f; color: #f7edda; }
 .mission-tabs button:hover:not([aria-selected="true"]) { background: #e3d7bf; }
@@ -1542,7 +1547,7 @@ body.dialog-open {
 .conversation-bubbles i:last-child { top: 35px; left: 56px; border-radius: 15px 15px 0 15px; background: #25261f; }
 .mission-panel h3 { font-size: 29px; line-height: 1.18; }
 .mission-panel > p:not(.mission-skills) { color: var(--muted); font-size: 16px; line-height: 1.75; margin-top: 14px; }
-.mission-prompt { margin-top: 20px; padding: 16px 18px; border-left: 2px solid #b79659; background: #eee7d9; }
+.mission-prompt { border-radius: 0 10px 10px 0; margin-top: 20px; padding: 16px 18px; border-left: 2px solid #b79659; background: #eee7d9; }
 .mission-prompt > span { font-size: 11px; color: var(--gold-ink); letter-spacing: .08em; }
 .mission-prompt p { font-size: 15px; line-height: 1.7; margin-top: 7px; }
 .mission-skills { color: var(--gold-ink); font-size: 13px; line-height: 1.6; margin-top: 19px; }
@@ -1583,7 +1588,7 @@ body.dialog-open {
 .message-preview { margin-top: 16px; border-block: 1px solid #d8d1c2; }
 .message-preview summary { font-size: 14px; cursor: pointer; padding: 12px 0; }
 .message-preview pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--sans); font-size: 13px; line-height: 1.7; margin: 0 0 14px; padding: 14px; background: #eee7d9; }
-.mobile-join { position: fixed; z-index: 15; bottom: 12px; left: 12px; right: 12px; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #151511; color: #f6f0e4; border: 1px solid #5b5039; box-shadow: 0 4px 30px #0003; }
+.mobile-join { border-radius: var(--panel-radius); padding-bottom: max(12px, env(safe-area-inset-bottom)); position: fixed; z-index: 15; bottom: 12px; left: 12px; right: 12px; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: #151511; color: #f6f0e4; border: 1px solid #5b5039; box-shadow: 0 4px 30px #0003; }
 .mobile-join > div { display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1.5; }
 .mobile-join strong { font-weight: 500; }
 .mobile-join > div > span { font-size: 12px; color: #cbb990; }
@@ -1707,7 +1712,7 @@ body.dialog-open {
 .heritage-photo figcaption > span:first-child { color: var(--gold-ink); font-family: var(--serif); font-size: 32px; line-height: 1.4; flex-shrink: 0; }
 .founder-grid { grid-template-columns: .85fr 1.15fr; gap: 75px; align-items: center; }
 .founder-photo { margin: 0; max-width: 410px; width: 100%; }
-.portrait-frame { aspect-ratio: 4 / 5; overflow: hidden; background: #121410; }
+.portrait-frame { border-radius: var(--panel-radius); aspect-ratio: 4 / 5; overflow: hidden; background: #121410; }
 .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 66% 80%; transform: scale(1.7); transform-origin: 66% 85%; }
 .founder-photo figcaption { border-bottom: 1px solid #56503d; padding: 18px 0; font-family: var(--serif); font-size: 26px; color: var(--gold); }
 .founder-photo figcaption > span { display: block; color: #c3c1b4; font-family: var(--sans); font-size: 13px; margin-top: 3px; }
@@ -1839,4 +1844,70 @@ body.dialog-open {
   .why-next { align-items: flex-start; flex-direction: column; gap: 20px; padding-top: 26px; }
   .why-next > p { font-size: 24px; }
   .why-next .text-link { font-size: 14px; }
+}
+
+/* Shared reading rhythm and touch layout, Álquimia 4.5. */
+:where(button, a, input, select, summary):focus-visible { outline: 2px solid #876327; outline-offset: 3px; }
+:where(a, button, input, select, summary):focus { scroll-margin-block: 100px; }
+main :where(p, li) { overflow-wrap: break-word; }
+.hero-copy, .chapter-hero-copy, .intro-copy, .founder-introduction { min-width: 0; }
+.hero-description, .chapter-lead, .chapter-copy { text-wrap: pretty; }
+.hero h1, .editorial-page h1, h2 { text-wrap: balance; }
+.hero-actions > a, .chapter-actions > a { flex: 0 1 auto; }
+.hero .eyebrow { letter-spacing: .12em; }
+.hero-footer { color: #b9af9b; }
+.welcome-points { gap: 24px; }
+.benefits-grid { column-gap: 40px; }
+.faq-list details { padding-inline: 4px; }
+.faq-list summary { padding-block: 21px; }
+.faq-list details[open] summary { color: var(--gold-ink); }
+.price-card .plan-description { min-height: 0; margin-bottom: 24px; }
+.price-card .plan-list { flex: 1; }
+.price-card .button { margin-top: 28px; }
+.saving-label { border-radius: 8px; }
+.site-footer nav a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 1100px) {
+  .has-js .header-inner nav { inset-inline: 16px; top: calc(var(--header-height) + 8px); padding: 12px 20px 20px; border: 1px solid #675639; border-radius: var(--panel-radius); max-height: calc(100dvh - 110px); overflow-y: auto; }
+  .header-inner nav > a { text-align: center; }
+}
+@media (max-width: 760px) {
+  .hero-copy, .chapter-hero-copy, .center-heading, .why-heading, .section-heading, .chapter-section-heading { text-align: center; }
+  .hero-description, .hero-price, .chapter-lead, .why-heading > p, .section-heading > p, .chapter-section-heading > p:last-child { margin-inline: auto; }
+  .hero-copy > .eyebrow { justify-content: center; }
+  .hero-copy .small-rule { display: none; }
+  .hero-grid { padding-block: 48px 40px; }
+  .hero h1 { font-size: clamp(40px,10.8vw,64px); line-height: 1.1; }
+  .hero-description { max-width: 38ch; font-size: 16px; line-height: 1.75; }
+  .hero-price { font-size: 13px; line-height: 1.8; }
+  .hero-footer { justify-content: center; text-align: center; flex-wrap: wrap; gap: 6px 16px; }
+  .section-intro, .editorial-split, .about-founder-grid { gap: 32px; }
+  .story-title-block, .section-intro > .eyebrow { text-align: center; }
+  .story-mantra { margin-inline: auto; font-size: 20px; }
+  .intro-copy, .chapter-copy { font-size: 16px; line-height: 1.8; }
+  .welcome-points { gap: 0; border-block: 1px solid var(--line); }
+  .welcome-points li { padding-block: 20px; }
+  .welcome-points li + li { border-top: 1px solid var(--line); }
+  .benefits-grid article { text-align: center; padding-block: 28px; }
+  .benefits-grid .brand-icon { margin-inline: auto; }
+  .pricing-grid { gap: 28px; }
+  .price-card { padding: 30px 24px 26px; }
+  .plan-heading { justify-content: center; }
+  .price-card > h3, .plan-price, .plan-description { text-align: center; }
+  .price-card h3 { min-height: 0; }
+  .price-card .plan-description { font-size: 15px; line-height: 1.75; }
+  .price-card .plan-list { font-size: 14px; }
+  .faq-grid > div:first-child { text-align: center; }
+  .faq-list summary { text-align: start; font-size: 16px; }
+  .footer-top > div { text-align: center; }
+  .footer-top .brand { margin-inline: auto; }
+  .footer-top nav { justify-content: center; gap: 4px 22px; }
+  .footer-bottom { text-align: center; gap: 8px; }
+  .mobile-join { bottom: max(12px, env(safe-area-inset-bottom)); }
+  .has-mobile-join :focus { scroll-margin-bottom: 110px; }
+}
+@media (max-width: 360px) {
+  .hero h1 { font-size: 38px; }
+  .mobile-join { gap: 8px; padding-inline: 12px; }
+  .mobile-join > div > span { font-size: 10px; }
+  .mobile-join .button { padding-inline: 16px; }
 }

@@ -13,7 +13,7 @@
 .currency-picker label:focus-within {outline:2px solid var(--gold-ink);outline-offset:3px}
 .currency-picker label>span {font-size:13px;font-weight:600;display:flex;gap:9px;align-items:center}
 .currency-picker small {font-size:12px;font-weight:400;opacity:.85}
-.checkout-reassurance {display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px 14px;text-align:center;font-size:12px;color:var(--muted);margin-top:24px}
+.checkout-reassurance {display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px 14px;text-align:center;font-size:13px;color:var(--muted);margin-top:24px}
 .checkout-reassurance svg {width:17px;height:17px;color:var(--gold-ink)}
 .checkout-dialog {padding:0;width:min(990px,calc(100% - 40px));max-width:none;border:1px solid #bfa77b;max-height:calc(100dvh - 40px);border-radius:16px;overflow:auto;box-shadow:0 28px 100px #0005}
 .checkout-dialog::backdrop {background:#090b09ba;backdrop-filter:blur(5px)}
@@ -120,3 +120,19 @@
   .checkout-dialog form .checkout-submit {font-size:13px}
 }
 @media (prefers-reduced-motion:reduce) {.checkout-dialog[open],.checkout-submit.is-loading svg {animation:none}.checkout-submit:hover {transform:none}.checkout-submit {transition:none}}
+
+/* Comfortable text and a smaller order summary on phones. */
+.checkout-dialog .field label { font-size: 14px; }
+.checkout-dialog .field-note, .checkout-dialog .session-note, .checkout-dialog .form-privacy, .checkout-provider-note { font-size: 12px; }
+.checkout-submit { touch-action: manipulation; }
+@media (max-width: 600px) {
+  .checkout-story { padding: 22px 24px; }
+  .checkout-brand { width: 155px; margin-bottom: 16px; }
+  .checkout-story h2 { font-size: 30px; }
+  .checkout-story #join-description { font-size: 14px; }
+  .checkout-order { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; }
+  .checkout-order strong { font-size: 32px; }
+  .checkout-form-panel { padding: 24px 20px; }
+  .checkout-dialog .plan-options { gap: 10px; }
+  .checkout-dialog .plan-option { min-height: 80px; padding: 12px; }
+}

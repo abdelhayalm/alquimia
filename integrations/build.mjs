@@ -7,8 +7,9 @@ const output = path.join(root,'public');
 await fs.rm(output,{recursive:true,force:true});
 await fs.mkdir(output,{recursive:true});
 for (const name of await fs.readdir(root)) {
-  if (name !== 'worker.js' && /\.(html|css|js)$/.test(name)) await fs.copyFile(path.join(root,name),path.join(output,name));
+  if (name !== 'worker.js' && /\.(html|css|js|xml)$/.test(name)) await fs.copyFile(path.join(root,name),path.join(output,name));
 }
+await fs.copyFile(path.join(root,'robots.txt'),path.join(output,'robots.txt'));
 await fs.cp(path.join(root,'assets'),path.join(output,'assets'),{recursive:true});
 const config = await fs.readFile(path.join(root,'payment-config.js'),'utf8');
 const handler = (await fs.readFile(path.join(root,'integrations/signup-handler.js'),'utf8')).replace(/^import .*?;\n/m,'');

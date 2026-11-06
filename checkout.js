@@ -89,7 +89,6 @@ function updateUI() {
   document.querySelectorAll('[data-provider]').forEach(element => { element.textContent = offer.provider; });
   document.querySelector('[data-annual-badge]').textContent = currency === 'USD' ? '12 MONTHS FOR THE PRICE OF 10' : 'SAVE R$275 WITH ANNUAL';
   document.querySelector('[data-annual-saving]').textContent = 'Save ' + formatAmount(savings, currency) + ' versus 12 monthly payments';
-  document.querySelector('[data-annual-support]').textContent = '12 months. ' + formatAmount(CHECKOUTS[currency].annual.amount, currency) + '. Help the school and community grow.';
   document.querySelector('[data-mobile-price]').textContent = formatAmount(CHECKOUTS[currency].monthly.amount, currency) + '/month · ' + formatAmount(CHECKOUTS[currency].annual.amount, currency) + '/year';
   membershipInputs.forEach(input => {
     const key = input.value;
