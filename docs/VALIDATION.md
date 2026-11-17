@@ -29,3 +29,11 @@ Static-preview POST failure is expected without Worker service; successful captu
 - No Lighthouse/axe score, full screen-reader audit, OS reduced-motion emulation, field performance, search-indexation or device-lab run. Reduced-motion rules and semantics were checked in source; no formal compliance claim.
 - Genuine reviews await approved data. Tree assessment, timetable, feedback capacity and prize/certificate criteria remain product work.
 - This is a GitHub review branch; main/production are not merged or redeployed by this review.
+
+## GitHub / Cloudflare result after publication
+
+PR: https://github.com/abdelhayalm/alquimia/pull/2. Implementation `77bed1fad8b005471b4cc59b228ebda5c391bcd3`; indexed handoff `cfdf5ff6e903a0b0a53f655e86e59977be4c7b63`.
+
+GitHub publication succeeded and the PR is mergeable, but Cloudflare's automatic **Workers Builds: alquimia** check failed on both v5 commits. The same check also reports failure for baseline main `b51dd8f78e1bb8129b8bf61bb9d8ceb12f85daa7`. This is evidence of an existing failure on main, not proof of a shared root cause. No preview deployment URL was returned. GitHub's check output exposes a dashboard log link but no error text; opening it reached Cloudflare sign-in. The root cause could not be established without authenticated build logs. Do not describe Cloudflare preview/production as deployed or CI as green. Local tests/build/site checks remain passing.
+
+Failed build details: https://dash.cloudflare.com/5d1229dc9a73c905fb6d2f2695ad34fd/workers/services/view/alquimia/production/builds/9648e307-6f91-417b-9378-e9420cf18250

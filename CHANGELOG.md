@@ -14,3 +14,5 @@ Rebuilds Home, Method and About around Egyptian Arabic, creative cultural learni
 - 11 passing tests; build/site checks and responsive browser review pass. Live capture and billing settings remain unverified; see [validation](docs/VALIDATION.md).
 
 GitHub review release; no production merge/deploy or real payment included.
+
+Post-publication: GitHub upload succeeded; Cloudflare automatic preview build failed (also failing on baseline main). No preview URL is available. Build-log details require Cloudflare sign-in; root cause is unverified. See the validation record.
