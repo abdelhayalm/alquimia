@@ -9,7 +9,7 @@ import {CHECKOUTS,COUNTRY_CODES,REGISTER_HEADERS,createSignupId} from '../paymen
 const secret='test-only-secret-not-for-production-12345678';
 const env={GOOGLE_SIGNUP_URL:'https://script.google.com/macros/s/test-deployment/exec',SIGNUP_SHARED_SECRET:secret};
 const signupId='a2234567-1234-4567-9234-123456789012';
-const details={signupId,name:'Test Learner',email:'learner@example.com',country:'BR',language:'Português',currency:'USD',membership:'monthly',website:''};
+const details={signupId,name:'Test Learner',email:'learner@example.com',country:'BR',language:'English',currency:'USD',membership:'monthly',website:''};
 const request=(body=details,headers={})=>new Request('https://alquimia.example/api/signup',{method:'POST',headers:{Origin:'https://alquimia.example','Content-Type':'application/json','CF-Connecting-IP':'192.0.2.1',...headers},body:JSON.stringify(body)});
 const saved=async(_url,options)=>{
   const envelope=JSON.parse(options.body);
@@ -18,8 +18,8 @@ const saved=async(_url,options)=>{
   return Response.json({saved:true,signupId:record.signupId});
 };
 
-test('four routes only redirect after a signed record is acknowledged',async()=>{
-  for(const currency of ['USD','BRL']) for(const membership of ['monthly','annual']) {
+test('the two preserved Stripe routes redirect only after a signed record is acknowledged',async()=>{
+  for(const currency of ['USD']) for(const membership of ['monthly','annual']) {
     let calls=0;
     const response=await handleSignup(request({...details,currency,membership,amount:0,paymentStatus:'Paid',checkoutUrl:'https://evil.example'}),env,async(url,options)=>{
       calls++;
@@ -60,7 +60,7 @@ test('no redirect on unavailable setup, failure, wrong acknowledgement, or rate 
 test('rejects cross-origin posts, invalid input, honeypots, and oversized bodies without saving',async()=>{
   const forbidden=await handleSignup(request(details,{Origin:'https://evil.example'}),env,()=>{throw new Error('Should not save');});
   assert.equal(forbidden.status,403);
-  for(const body of [{...details,country:'XX'},{...details,email:'not-an-email'},{...details,name:' '},{...details,name:'line\nbreak'},{...details,currency:{toString:null,valueOf:null}},{...details,membership:'__proto__'},{...details,language:'Other'},{...details,website:'spam'},{...details,signupId:'not-a-uuid'},null]) {
+  for(const body of [{...details,country:'XX'},{...details,email:'not-an-email'},{...details,name:' '},{...details,name:'line\nbreak'},{...details,currency:{toString:null,valueOf:null}},{...details,membership:'__proto__'},{...details,language:'Other'},{...details,language:'Português'},{...details,currency:'BRL'},{...details,website:'spam'},{...details,signupId:'not-a-uuid'},null]) {
     const result=await handleSignup(request(body),env,()=>{throw new Error('Should not save');});
     assert.equal(result.status,400);
   }

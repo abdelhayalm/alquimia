@@ -1,28 +1,34 @@
-# Álquimia design system
+# Álquimia design system — v5
+
+[Documentation index](docs/README.md) · [Content and SEO](docs/CONTENT-AND-SEO.md)
 
 ## Direction
-An Egyptian Arabic school with the character of a cultural meeting place. Preserve the original pyramid-and-book artwork, gold and black identity, and papyrus surfaces. Prioritize clear membership choices and a comfortable mobile reading experience.
+
+A living Egyptian Arabic academy and cultural community: dark editorial opening, original Hapi temple photography, papyrus reading sections and a learning tree connecting roots to expression. Preserve the supplied logo artwork exactly. The learning-tree SVG is a separate explanatory illustration.
 
 ## Tokens
-- Black #000000: brand and navigation.
-- Ink #24231e: primary text and dark actions.
-- Egyptian gold #dfbc74: primary action and selected controls on dark surfaces.
-- Gold ink #876327: readable accents on papyrus.
-- Papyrus #f6f3eb and cream #eae4d6: reading surfaces.
-- Georgia: editorial headings; Arial/Helvetica: interface and reading copy. Do not add font downloads merely for decoration.
-- Actions: 12px corners, controls: 10px, panels/images: 16px. Circles are reserved for the learning-map concept.
-- Actions: minimum 48px; compact touch controls: minimum 44px. Visible keyboard focus; selected control borders sit against the control.
 
-## Interaction
-No decorative arrows, ornamental numbering, glossy fills, heavy button shadows, scroll pinning, or continuously running decorative animations. Actual ordered learning steps retain their numbers. Keep calls to action centered, with gold primary actions and quieter outlined secondary actions. Hover lift is at most 2px and restricted to fine pointers.
+| Token | Value / role |
+| --- | --- |
+| Black / ink | `#000000` / `#1A1A1A` |
+| Papyrus / paper | `#F2EAD6` / `#FAF7EF` |
+| Gold / gold ink | `#C9A24B` / `#73551D` |
+| Lapis | `#2E5A8A`; supporting accent and focus |
+| Muted / border | `#655F53` / `#D8CFBC` |
+| Display / body | Georgia / Arial, Helvetica; no font downloads |
+| Corners | 14px default; rounded controls, arch-shaped hero photo |
+| Spacing | Section rhythm `clamp(72px,8vw,120px)`; fluid typography |
 
-Short once-only entrances use opacity and transform, last 260ms, and respect reduced motion, including preference changes while the page is open. Content is always visible if JavaScript or animation fails. Tabs, navigation and the signup dialog work with keyboard and touch.
+No new gradients, replacement logos, autoplay or scroll pinning. Gold texture belongs only to original artwork. Use purposeful imagery and clear hierarchy.
 
-## Mobile
-Center hero and section headings; keep extended prose and form labels aligned for reading. Keep the learning map as a center circle followed by four circles in two columns. Use a compact menu panel, readable type and comfortable form controls. Check 320, 390, 768 and desktop widths whenever browser tooling permits.
+## Interaction and accessibility
 
-## Integration boundaries
-Preserve all four payment routes, prices, signup fields, signed Google receiver, and manual payment confirmation/community invitation. No payment or personal signup is required for a design verification.
+Native word-family buttons, keyboard-operated learning tabs, FAQ details and enrollment dialog. Visible focus, descriptive labels, status announcements, reserved image dimensions, responsive images and lazy loading below the hero. Reduced-motion rules disable motion/smooth scrolling. Content/navigation remain available without JavaScript; enrollment offers WhatsApp contact as a fallback.
 
-## References applied
-Hapi Website Design and Development Toolkit v1.1: START-HERE and WORKFLOW, Frontend Design, Review Animations, Web Quality Accessibility, and Webapp Testing. Their guidance is adapted to this existing HTML/CSS/JavaScript project.
+Mobile navigation has Menu/Close and Escape. Enrollment retains fields after failed saves and never bypasses capture. Browser checks at requested widths 320/390/768/1280px found no horizontal overflow after fixes. See [validation](docs/VALIDATION.md); this is not accessibility certification.
+
+## Boundaries and references
+
+Public offer: English/USD/Stripe only. Preserve both original USD links, signed receiver contract, mapping and manual confirmation/invitation. Keep internal docs and private settings out of `public/`.
+
+Hapi Website, SEO and Online Marketing Toolkits, selected frontend-design/accessibility references and Vercel guidelines were applied. Exact source snapshots and selection rationale: [implementation plan](docs/IMPLEMENTATION-PLAN.md).
