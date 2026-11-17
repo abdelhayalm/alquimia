@@ -4,7 +4,7 @@ Updated: 17 November 2026. Compact Claude handoff from accessible ChatGPT discus
 
 ## Navigation and current task
 
-**Current implementation priority: rebuild the English/USD website in the existing GitHub repository.** A separate Portuguese/BRL repository will be created later by Hapi. See section 9 for scope, payment preservation, workflow and repository documentation.
+**Current handoff: English/USD website v5 is implemented and published for GitHub review in PR #2.** See section 9 for the review link, code commit, checks and remaining operational limits. A separate Portuguese/BRL repository will be created later by Hapi.
 
 - [1. Identity, mission and philosophy](#1-identity-mission-and-philosophy)
 - [2. Audience, markets and language scope](#2-audience-and-offer)
@@ -165,7 +165,7 @@ Warm, intelligent, welcoming, concrete voice. Preserve approved pyramid/open-boo
 
 ## 8. Development and continuity
 
-**Website sections to develop — planning only, not implemented by this brief:**
+**Website section intentions — v5 now implements the learning tree and illustrative showcase; authentic reviews remain gated until approved data exists (see section 9):**
 
 | Section | Purpose and proposed placement |
 | --- | --- |
@@ -198,6 +198,20 @@ Sources reviewed: September brand/offer brief; October V4 workbook; Business Mod
 **Implementation:** Rewrite and sequence the English page around the mission, Egyptian Arabic focus, immersive method, Tree of Learning expectations, cultural/creative activities, membership, educator and FAQ. Use genuine available reviews and learner work with accurate attribution; label demonstrations clearly. Apply brand identity, responsive/accessibility checks, metadata, structured data where truthful, and performance-conscious interaction. Keep unfinished curriculum details marked accurately in internal documentation.
 
 **Repository handoff:** Maintain an indexed README, current project brief, English content/design notes, a Stripe integration reference, setup/deployment instructions, validation record and a dated changelog/version. Inspect existing documentation paths first and reuse them where suitable. Record branch/commit and rollback reference. Link or index relevant toolkit/skill sources and distinguish applied instructions from unimplemented suggestions. Report what changed, what was tested, remaining limits and the GitHub review link after publication.
+
+### 9.1. Implemented release and where to continue
+
+**English website v5.0.0 — published 17 November 2026, 11:30 America/Sao_Paulo.**
+
+- Review: [GitHub PR #2](https://github.com/abdelhayalm/alquimia/pull/2).
+- Source: [feat/english-website-v5](https://github.com/abdelhayalm/alquimia/tree/feat/english-website-v5); implementation commit `77bed1fad8b005471b4cc59b228ebda5c391bcd3`.
+- Entry point for future work: [documentation index](https://github.com/abdelhayalm/alquimia/blob/feat/english-website-v5/docs/README.md). Read the current brief before editing copy or offer. `CONTENT-AND-SEO.md` covers page/voice/metadata decisions; `STRIPE-INTEGRATION.md` owns payment mapping/protocol; `SETUP-AND-DEPLOYMENT.md` owns runtime/deployment/rollback; `VALIDATION.md` owns evidence and limits; root `CHANGELOG.md` records the version.
+- Implemented: English Home/Method/About, Egyptian Arabic focus, interactive root example and 3/6/12-month tree, learning rhythm, accurately labeled creative examples, founder/mission, one full-access membership, FAQ and English/USD-only enrollment/API configuration. Original logo/artwork retained. Reviews are omitted publicly until authentic approved/consented data exists.
+- Applied Skill Finder and Hapi Website/SEO/Online Marketing Toolkit references; exact sources and selected frontend/accessibility guidance recorded in `IMPLEMENTATION-PLAN.md`.
+- Stripe mapping retained exactly: monthly US$25 → `https://buy.stripe.com/9B614n4Y0epPbY25NW4AU01`; annual US$250 → `https://buy.stripe.com/4gM6oHbmochH7HM4JS4AU02`. Signed capture-before-checkout contract and manual confirmation/invitation preserved. Receiver source, runtime names and domain configuration unchanged; no secrets or member records committed.
+- Validation: 11 automated tests pass; build and site checks pass; desktop/mobile review at requested widths 320/390/768/1280px found no horizontal overflow after fixes. Exact links returned HTTP 200 read-only. No real payment or signup record created.
+- Remaining limit: live `/api/signup` returned HTTP 403 from this review runtime, so live signup-to-Sheet capture is not verified. Confirm through the controlled setup procedure. No billing renewal, Lighthouse score, formal accessibility audit or production deployment is claimed. Main is not merged; this is the review release.
+- Rollback baseline: `b51dd8f78e1bb8129b8bf61bb9d8ceb12f85daa7`. Detailed curriculum, placement, assessment, timetable, feedback capacity and prize/certificate criteria remain unfinished product work.
 
 ## Appendix — Price and offer benchmark — researched 17 November 2026
 

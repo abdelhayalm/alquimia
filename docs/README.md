@@ -1,6 +1,6 @@
 # Documentation index
 
-Current source release: **5.0.0 — 17 November 2026**. Review branch: `feat/english-website-v5`. Read [PROJECT-CONTEXT.md](PROJECT-CONTEXT.md) before changing the offer. New explicit Hapi decisions override old drafts; curriculum proposals remain marked.
+Current source release: **5.0.0 — 17 November 2026**. Review: [PR #2](https://github.com/abdelhayalm/alquimia/pull/2), branch `feat/english-website-v5`. Read [PROJECT-CONTEXT.md](PROJECT-CONTEXT.md) before changing the offer. New explicit Hapi decisions override old drafts; curriculum proposals remain marked.
 
 | Task / question | Starting point | Related source |
 | --- | --- | --- |

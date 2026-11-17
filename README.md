@@ -2,7 +2,7 @@
 
 Egyptian Arabic through live learning, creativity, culture and community. English teaching, one full-access membership, US$25 monthly or US$250 for 12 months, using the existing Stripe Payment Links.
 
-Review branch: `feat/english-website-v5`. Baseline main: `b51dd8f78e1bb8129b8bf61bb9d8ceb12f85daa7`. Publishing this branch does not confirm a production deployment. See [validation](docs/VALIDATION.md) for evidence and limitations.
+Review: [PR #2](https://github.com/abdelhayalm/alquimia/pull/2), branch `feat/english-website-v5`. Baseline main: `b51dd8f78e1bb8129b8bf61bb9d8ceb12f85daa7`. Publishing this branch does not confirm a production deployment. See [validation](docs/VALIDATION.md) for evidence and limitations.
 
 ## Start here
 
