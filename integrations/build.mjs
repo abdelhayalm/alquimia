@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { renderReviews } from './render-reviews.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -6,9 +7,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output = path.join(root,'public');
 await fs.rm(output,{recursive:true,force:true});
 await fs.mkdir(output,{recursive:true});
-for (const name of await fs.readdir(root)) {
-  if (name !== 'worker.js' && /\.(html|css|js|xml)$/.test(name)) await fs.copyFile(path.join(root,name),path.join(output,name));
+for (const name of ['index.html', 'method.html', 'about.html', 'style.css', 'script.js', 'checkout.css', 'checkout.js', 'payment-config.js', 'sitemap.xml']) {
+  await fs.copyFile(path.join(root,name),path.join(output,name));
 }
+const reviews = JSON.parse(await fs.readFile(path.join(root, 'content/reviews.json'), 'utf8'));
+const homepage = await fs.readFile(path.join(output, 'index.html'), 'utf8');
+await fs.writeFile(path.join(output, 'index.html'), homepage.replace('<!-- APPROVED_REVIEWS -->', renderReviews(reviews.reviews)));
 await fs.copyFile(path.join(root,'robots.txt'),path.join(output,'robots.txt'));
 await fs.cp(path.join(root,'assets'),path.join(output,'assets'),{recursive:true});
 const config = await fs.readFile(path.join(root,'payment-config.js'),'utf8');
